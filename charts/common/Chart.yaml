@@ -1,0 +1,14 @@
+apiVersion: v2
+appVersion: none
+dependencies: null
+description: Common library for Helm Charts
+home: ''
+icon: ''
+keywords:
+  - common
+  - library-chart
+kubeVersion: '>=1.16.0-0'
+name: common
+sources: []
+type: library
+version: 0.1.0

@@ -1,0 +1,58 @@
+# Default values supported by the Chart library.
+
+controller:
+  # -- Set the controller upgrade strategy.
+  # For Deployments, Supported values are `Recreate` and `RollingUpdate`
+  strategy: Recreate
+  rollingUpdate:
+    # -- Set deployment RollingUpdate max unavailable
+    unavailable:
+    # -- Set deployment RollingUpdate max surge
+    surge:
+
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: false
+  # -- The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+portal:
+  # -- Enable the web-portal
+  enabled: true 
+  # -- Web-portal path
+  path: "/"
+  # -- Web-portal host
+  host: "$node_ip"
+  # -- Web-portal port
+  port: "9443"
+  # -- Web-portal protocol
+  protocol: "https"
+
+# -- Configure the services for the chart here
+# @default -- See below
+service:
+  main:
+    # -- Enables or disables the service
+    enabled: false
+    # -- Set the service type
+    type: ClusterIP
+    # -- Configure the Service port information here
+    # @default -- See below
+    ports:
+      main:
+        # -- Enables or disables the port
+        enabled: false
+        # -- Port number
+        port:
+        # -- Port protocol. Supported values are `HTTP`, `HTTPS`, `TCP` and `UDP`
+        protocol: TCP
+        # -- Specify the nodePort value for the LoadBalancer and NodePort service types.
+        # [[ref]](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport)
+        nodePort:
+
+# -- Set an override for the prefix of the fullname
+nameOverride:
+
+# -- Set the entire name definition
+fullnameOverride:
