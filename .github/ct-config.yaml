@@ -1,0 +1,16 @@
+# Reference: https://github.com/helm/chart-testing/blob/main/doc/ct_install.md
+# Reference: https://github.com/helm/chart-testing/blob/main/doc/ct_lint.md
+#
+remote: origin
+target-branch: charts
+chart-yaml-schema: .github/chart_schema.yaml
+validate-maintainers: false
+chart-repos:
+  - traefik=https://helm.traefik.io/traefik
+  - homelab=https://tvanbolderen.github.io/homelab
+chart-dirs:
+  - charts
+excluded-charts:
+  - common
+helm-extra-args: --timeout 600s
+exclude-deprecated: true
