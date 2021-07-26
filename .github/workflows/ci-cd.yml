@@ -87,6 +87,10 @@ jobs:
         uses: azure/setup-helm@v1
         with:
           version: v3.5.3
+      - name: Configure Helm
+        run: |
+          helm repo add traefik https://helm.traefik.io/traefik
+          helm repo add homelab https://tvanbolderen.github.io/homelab
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.2.1
         with:
