@@ -33,8 +33,8 @@ jobs:
       - name: Git status
         run: |
           status=$(git status --untracked-files=all --porcelain)
-          echo $status
-          if [ -n "$status" ]; then
+          echo "${status}"
+          if [ -n "${status}" ]; then
             exit 1;
           fi
 
