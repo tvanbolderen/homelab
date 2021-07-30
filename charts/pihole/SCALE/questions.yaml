@@ -111,6 +111,7 @@ questions:
             default: "Etc/UTC"
             $ref:
               - "definitions/timezone"
+              
   - variable: envList
     label: "Image environment"
     group: "Container Configuration"
@@ -140,10 +141,11 @@ questions:
       attrs:
         - variable: adminPassword
           label: "Administrative password"
-          schema: string
-          default: "admin"
-          private: true
-          required: true
+          schema: 
+            type: string
+            default: "admin"
+            private: true
+            required: true
 
   - variable: hostNetwork
     group: "Networking and Services"
