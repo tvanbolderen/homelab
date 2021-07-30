@@ -1,0 +1,121 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "common.names.fullname" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.controller.replicas }}
+  strategy:
+    type: {{ .Values.controller.strategy }}
+    {{- if eq .Values.controller.strategy "RollingUpdate" }}
+    rollingUpdate:
+      maxSurge: {{ .Values.controller.rollingUpdate.surge }}
+      maxUnavailable: {{ .Values.controller.rollingUpdate.unavailable }}
+    {{- end }}
+  selector:
+    matchLabels:
+      {{- include "common.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "common.selectorLabels" . | nindent 8 }}
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+        - 127.0.0.1
+        - 8.8.8.8
+        - 8.8.4.4
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+          - name: http
+            protocol: TCP
+            containerPort: 80
+          - name: https
+            protocol: TCP
+            containerPort: 443
+          - name: dns-tcp
+            protocol: TCP
+            containerPort: 53
+          - name: dns-udp
+            protocol: UDP
+            containerPort: 53
+          - name: dhcp-udp
+            protocol: UDP
+            containerPort: 67
+          env:
+            {{- range $name, $value := .Values.env }}
+            - name: {{ quote $name }}
+              value: {{ quote $value }}
+            {{- end }}
+            {{- range $envList := .Values.envList }}
+            {{- if and $envList.name $envList.value }}
+            - name: {{ $envList.name }}
+              value: {{ $envList.value | quote }}
+            {{- else }}
+              {{- fail "Please specify name/value for environment variable" }}
+            {{- end }}
+            {{- end }}
+            - name: WEBPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: {{ default "password" }}
+                  name: {{ default "pihole-credentials" }}
+          volumeMounts:
+            - name: pihole-config
+              mountPath: {{ .Values.persistence.config.mountPath }}
+            - name: pihole-dnsmasq
+              mountPath: {{ .Values.persistence.dnsmasq.mountPath }}
+          {{- if .Values.probes.liveness.enabled }}
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.probes.readiness.path }}
+              port: http
+            initialDelaySeconds: 60
+            failureThreshold: 10
+            timeoutSeconds: 5
+          {{- end }}
+          {{- if .Values.probes.readiness.enabled }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.probes.readiness.path }}
+              port: http
+            initialDelaySeconds: 60
+            failureThreshold: 3
+            timeoutSeconds: 5
+          {{- end }}
+
+      volumes:
+        - name: pihole-config
+          {{- if .Values.persistence.config.enabled }}
+          {{- if eq .Values.persistence.config.type "pvc" }}
+          persistentVolumeClaim:
+            claimName: pihole-config-pvc
+          {{- else if eq .Values.persistence.config.type "hostPath" }}
+          hostPath:
+            path: {{ .Values.persistence.config.hostPath }}
+            type: {{ .Values.persistence.config.hostPathType }}
+          {{- else }}
+            {{- fail (printf "Not a valid persistence.type (%s)" .Values.persistence.config.type) }}
+          {{- end }}
+          {{- end }}
+        - name: pihole-dnsmasq
+          {{- if .Values.persistence.dnsmasq.enabled }}
+          {{- if eq .Values.persistence.dnsmasq.type "pvc" }}
+          persistentVolumeClaim:
+            claimName: pihole-dnsmasq-pvc
+          {{- else if eq .Values.persistence.dnsmasq.type "hostPath" }}
+          hostPath:
+            path: {{ .Values.persistence.dnsmasq.hostPath }}
+            type: {{ .Values.persistence.dnsmasq.hostPathType }}
+          {{- else }}
+            {{- fail (printf "Not a valid persistence.type (%s)" .Values.persistence.dnsmasq.type) }}
+          {{- end }}
+          {{- end }}

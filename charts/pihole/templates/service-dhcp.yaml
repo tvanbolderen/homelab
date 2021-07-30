@@ -1,0 +1,25 @@
+{{ if .Values.service.dhcp.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "common.names.fullname" . }}-dhcp
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.dhcp.type }}
+  selector:
+    {{- include "common.selectorLabels" . | nindent 4 }}
+  ports:
+  {{- with .Values.service.dhcp }}
+    {{- if .ports.dhcp.enabled }}
+    - name: dhcp-udp
+      targetPort: dhcp-udp
+      port: {{ .ports.dhcp.port }}
+      protocol: {{ .ports.dhcp.protocol }}
+      {{- if and (eq .type "NodePort") (not (empty .ports.dhcp.nodePort)) }}
+      nodePort: {{ .ports.dhcp.nodePort }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
