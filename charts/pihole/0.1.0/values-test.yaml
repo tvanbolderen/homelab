@@ -1,0 +1,98 @@
+# Default values for Pi-Hole
+image:
+  repository: pihole/pihole
+  pullPolicy: IfNotPresent
+  tag: latest
+
+controller:
+  replicas: 1
+  strategy: RollingUpdate
+  rollingUpdate:
+    unavailable: 1
+    surge: 1
+
+service:
+  web:
+    enabled: true
+    primary: true
+    type: ClusterIP
+    ports:
+      http:
+        enabled: true
+        primary: true
+        port: 80
+        protocol: TCP
+      https:
+        enabled: true
+        port: 443
+        protocol: TCP
+  dns:
+    enabled: false
+    type: ClusterIP
+    ports:
+      tcp:
+        enabled: true
+        port: 53
+        protocol: TCP
+      udp:
+        enabled: true
+        port: 53
+        protocol: UDP
+  dhcp:
+    enabled: false
+    type: ClusterIP
+    ports:
+      dhcp:
+        enabled: true
+        port: 67
+        protocol: UDP
+
+ingress:
+  web:
+    enabled: false
+    entryPoints:
+      - websecure
+    routes:
+      - match: "Host(`test.example.com`)"
+        middlewares:
+          - addprefix
+
+webInterface:
+  adminPassword: "admin"
+
+envValueFrom:
+  WEBPASSWORD:
+    secretKeyRef:
+      name: pihole-credentials
+      key: admin-password
+
+env:
+  TZ: "Etc/UTC"
+
+envList: []
+
+probes:
+  readiness:
+    enabled: true
+    path: /admin.index.php
+  liveness:
+    enabled: true
+    path: /admin.index.php
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/etc/pihole"
+    type: pvc
+    size: "1Gi"
+    accessMode: ReadWriteOnce
+  dnsmasq:
+    enabled: true
+    mountPath: "/etc/dnsmasq.d"
+    type: pvc
+    size: "1Gi"
+    accessMode: ReadWriteOnce
+
+nameOverride: ""
+
+fullnameOverride: ""

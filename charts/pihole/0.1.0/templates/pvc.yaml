@@ -1,0 +1,30 @@
+{{- if .Values.persistence.config.enabled  }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pihole-config-pvc
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.config.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.config.size | quote }}
+{{- end }}
+{{- if .Values.persistence.dnsmasq.enabled  }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pihole-dnsmasq-pvc
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.dnsmasq.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.dnsmasq.size | quote }}
+{{- end }}
