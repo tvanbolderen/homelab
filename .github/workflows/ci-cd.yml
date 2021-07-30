@@ -20,6 +20,23 @@ concurrency:
   group: ci-${{ github.ref }}
 
 jobs:
+  helm-docs:
+    name: Helm Docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.5.3
+      - name: Generate Helm docs
+        run: ./tools/generate-helm-docs.sh
+      - name: Git status
+        run: if [ -n "$(git status --untracked-files=all --porcelain)" ]; then exit 1; fi
+
   helm-lint:
     name: Helm Charts (lint)
     runs-on: ubuntu-latest
@@ -71,6 +88,7 @@ jobs:
     name: Helm Charts (release)
     if: ${{ github.ref == 'refs/heads/charts' }}
     needs:
+      - helm-docs
       - helm-lint
       - helm-install
     runs-on: ubuntu-latest
@@ -101,6 +119,7 @@ jobs:
   scale-catalog:
     name: SCALE Catalog
     needs:
+      - helm-docs
       - helm-lint
       - helm-install
     runs-on: ubuntu-latest
