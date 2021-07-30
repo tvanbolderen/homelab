@@ -32,11 +32,11 @@ jobs:
         run: tools/generate-helm-docs.sh
       - name: Git status
         run: |
-        status=$(git status --untracked-files=all --porcelain)
-        echo $status
-        if [ -n "$status" ]; then
-          exit 1;
-        fi
+          status=$(git status --untracked-files=all --porcelain)
+          echo $status
+          if [ -n "$status" ]; then
+            exit 1;
+          fi
 
   helm-lint:
     name: Helm Charts (lint)
