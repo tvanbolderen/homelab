@@ -19,7 +19,7 @@ serviceAccount:
 
 portal:
   # -- Enable the web-portal
-  enabled: true 
+  enabled: false 
   # -- Web-portal path
   path: "/"
   # -- Web-portal host
@@ -37,6 +37,8 @@ service:
     enabled: false
     # -- Set the service type
     type: ClusterIP
+    # -- Provide additional annotations which may be required.
+    annotations: {}
     # -- Configure the Service port information here
     # @default -- See below
     ports:
