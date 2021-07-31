@@ -61,6 +61,7 @@ questions:
     label: "Configure Probes"
     schema:
       type: dict
+      hidden: true
       attrs:
         - variable: readiness
           label: "Readiness probe"
