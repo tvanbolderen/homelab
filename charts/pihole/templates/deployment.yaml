@@ -78,6 +78,7 @@ spec:
             initialDelaySeconds: 60
             failureThreshold: 10
             timeoutSeconds: 5
+            periodSeconds: 10
           {{- end }}
           {{- if .Values.probes.readiness.enabled }}
           readinessProbe:
@@ -87,6 +88,7 @@ spec:
             initialDelaySeconds: 60
             failureThreshold: 3
             timeoutSeconds: 5
+            periodSeconds: 10
           {{- end }}
 
       volumes:
