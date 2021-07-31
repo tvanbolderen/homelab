@@ -26,6 +26,10 @@ Kubernetes: `>=1.16.0-0`
 |-----|------|---------|-------------|
 | controller.replicas | int | `1` |  |
 | controller.strategy | string | `"Recreate"` |  |
+| env.OPENVPN_CONFIG | string | `"france"` |  |
+| env.OPENVPN_PASSWORD | string | `"pass"` |  |
+| env.OPENVPN_PROVIDER | string | `"PIA"` |  |
+| env.OPENVPN_USERNAME | string | `"user"` |  |
 | env.PGID | int | `568` |  |
 | env.PUID | int | `568` |  |
 | env.TZ | string | `"Etc/UTC"` |  |
