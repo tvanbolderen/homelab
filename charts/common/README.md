@@ -1,6 +1,6 @@
 # common
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: library](https://img.shields.io/badge/Type-library-informational?style=flat-square) ![AppVersion: none](https://img.shields.io/badge/AppVersion-none-informational?style=flat-square)
+![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square) ![Type: library](https://img.shields.io/badge/Type-library-informational?style=flat-square) ![AppVersion: none](https://img.shields.io/badge/AppVersion-none-informational?style=flat-square)
 
 Common library for Helm Charts
 
@@ -17,14 +17,14 @@ Kubernetes: `>=1.16.0-0`
 | controller.strategy | string | `"Recreate"` | Set the controller upgrade strategy. For Deployments, Supported values are `Recreate` and `RollingUpdate` |
 | fullnameOverride | string | `nil` | Set the entire name definition |
 | nameOverride | string | `nil` | Set an override for the prefix of the fullname |
-| portal.enabled | bool | `true` | Enable the web-portal |
+| portal.enabled | bool | `false` | Enable the web-portal |
 | portal.host | string | `"$node_ip"` | Web-portal host |
 | portal.path | string | `"/"` | Web-portal path |
 | portal.port | string | `"9443"` | Web-portal port |
 | portal.protocol | string | `"https"` | Web-portal protocol |
-| service | object | See below | Configure the services for the chart here. |
+| service | object | See below | Configure the services for the chart here |
 | service.main.enabled | bool | `false` | Enables or disables the service |
-| service.main.ports | object | See below | Configure the Service port information here. |
+| service.main.ports | object | See below | Configure the Service port information here |
 | service.main.ports.main.enabled | bool | `false` | Enables or disables the port |
 | service.main.ports.main.nodePort | string | `nil` | Specify the nodePort value for the LoadBalancer and NodePort service types. [[ref]](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) |
 | service.main.ports.main.port | string | `nil` | Port number |
