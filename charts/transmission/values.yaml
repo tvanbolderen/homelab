@@ -9,12 +9,12 @@ controller:
   strategy: Recreate
 
 service:
-  # web:
+  web:
     enabled: true
     primary: true
     type: ClusterIP
     ports:
-      # http:
+      http:
         enabled: true
         primary: true
         port: 9091
