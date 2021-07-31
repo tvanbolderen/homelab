@@ -12,6 +12,10 @@
 {{- $port := .Values.portal.port }}
 {{- $path := .Values.portal.path }}
 
+{{- if or (eq $primaryPort.protocol "HTTP") (eq $primaryPort.protocol "HTTPS") }}
+  {{- $protocol = $primaryPort.protocol | lower }}
+{{- end }}
+
 {{- if eq $primaryService.type "NodePort" }}
   {{- $port = $primaryPort.nodePort }}
 {{- end }}
