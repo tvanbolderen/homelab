@@ -1,0 +1,30 @@
+{{- if and (.Values.persistence.config.enabled) (eq .Values.persistence.config.type "pvc") }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pihole-config-pvc
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ required (printf "accessMode is required for PVC") .Values.persistence.config.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ required (printf "size is required for PVC") .Values.persistence.config.size | quote }}
+{{- end }}
+{{- if and (.Values.persistence.dnsmasq.enabled) (eq .Values.persistence.dnsmasq.type "pvc")  }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pihole-dnsmasq-pvc
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ required (printf "accessMode is required for PVC") .Values.persistence.dnsmasq.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ required (printf "size is required for PVC") .Values.persistence.dnsmasq.size | quote }}
+{{- end }}
