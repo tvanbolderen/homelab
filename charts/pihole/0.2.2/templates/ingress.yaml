@@ -1,0 +1,36 @@
+{{- if .Values.ingress.web.enabled }}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ include "common.names.fullname" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  entryPoints:
+  {{- range .Values.ingress.web.entryPoints }}
+    - {{ . }}
+  {{- end }} 
+  routes:
+  {{- range .Values.ingress.web.routes }}
+    - match: {{ .match }}
+      kind: Rule
+      services:
+        - name: {{ include "common.names.fullname" $ }}-web
+          port: {{ $.Values.service.web.ports.http.port }}
+      middlewares:
+      {{- range .middlewares }}
+        - name: {{ printf "%s-%s" (include "common.names.fullname" $) . }}
+      {{- end }}
+  {{- end }}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "common.names.fullname" . }}-addprefix
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  addPrefix:
+    prefix: /admin
+{{- end }}
