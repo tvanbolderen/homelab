@@ -20,7 +20,7 @@ spec:
           port: {{ $.Values.service.web.ports.http.port }}
       middlewares:
       {{- range .middlewares }}
-        - {{ printf "%s-%s" (include "common.names.fullname" $) . }}
+        - name: {{ printf "%s-%s" (include "common.names.fullname" $) . }}
       {{- end }}
   {{- end }}
 ---
