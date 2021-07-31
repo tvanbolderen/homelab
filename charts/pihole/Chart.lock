@@ -1,6 +1,6 @@
 dependencies:
 - name: common
   repository: https://tvanbolderen.github.io/homelab
-  version: 0.2.0
-digest: sha256:2108ef11d88fa136f5f4a6a1b85d5abec48056353fcc3fef686e4fad89c14341
-generated: "2021-07-30T17:54:11.4716569+02:00"
+  version: 0.3.0
+digest: sha256:45873c295a4596bb24e88db9fe3b919578bbad445aaf393bfc009c06497e6341
+generated: "2021-07-31T15:05:45.7225885+02:00"
