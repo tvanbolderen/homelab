@@ -1,0 +1,82 @@
+# Default values for Transmission
+image:
+  repository: haugene/transmission-openvpn
+  pullPolicy: IfNotPresent
+  tag: latest
+
+controller:
+  replicas: 1
+  strategy: Recreate
+
+service:
+  # web:
+    enabled: true
+    primary: true
+    type: ClusterIP
+    ports:
+      # http:
+        enabled: true
+        primary: true
+        port: 9091
+        protocol: HTTP
+
+ingress:
+  web:
+    enabled: false
+    entryPoints:
+      - websecure
+    routes:
+      - match: "Host(`test.example.com`)"
+        middlewares: []
+
+env:
+  TZ: "Etc/UTC"
+  PUID: 568
+  PGID: 568
+  UMASK: 002
+
+envList: []
+
+  # OPENVPN_PROVIDER: PIA
+  # OPENVPN_USERNAME: user
+  # OPENVPN_PASSWORD: pass
+  # OPENVPN_CONFIG: france
+
+  # - name: LOCAL_NETWORK
+  #   value: 192.168.1.0/24
+  # - name: OPENVPN_PROVIDER
+  #   value: NORDVPN
+  # # - name: OPENVPN_CONFIG
+  # #   value: france
+  # - name: OPENVPN_USERNAME
+  #   value: user
+  # - name: OPENVPN_PASSWORD
+  #   value: pass
+  # - name: CREATE_TUN_DEVICE
+  #   value: "true"
+  # - name: NORDVPN_COUNTRY
+  #   value: US
+  # - name: NORDVPN_CATEGORY
+  #   value: legacy_p2p
+  # - name: NORDVPN_PROTOCOL
+  #   value: tcp
+
+probes:
+  readiness:
+    enabled: false
+    command: /etc/scripts/healthcheck.sh
+  liveness:
+    enabled: false
+    command: /etc/scripts/healthcheck.sh
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/data"
+    type: pvc
+    size: "1Gi"
+    accessMode: ReadWriteOnce
+
+nameOverride: ""
+
+fullnameOverride: ""
