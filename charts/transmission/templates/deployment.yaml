@@ -47,7 +47,7 @@ spec:
             {{- end }}
             {{- end }}
           volumeMounts:
-            - name: transmission-data
+            - name: transmission-config
               mountPath: {{ .Values.persistence.config.mountPath }}
           {{- if .Values.probes.readiness.enabled }}
           readinessProbe:
