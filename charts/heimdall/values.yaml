@@ -1,0 +1,62 @@
+# Default values for Heimdall
+image:
+  repository: linuxserver/heimdall
+  pullPolicy: IfNotPresent
+  tag: version-2.2.2
+
+controller:
+  replicas: 1
+  strategy: Recreate
+
+service:
+  web:
+    enabled: true
+    primary: true
+    type: ClusterIP
+    ports:
+      http:
+        enabled: true
+        primary: true
+        port: 80
+        protocol: HTTP
+      https:
+        enabled: true
+        port: 443
+        protocol: HTTPS
+
+ingress:
+  web:
+    enabled: false
+    entryPoints:
+      - websecure
+    routes:
+      - match: "Host(`test.example.com`)"
+        middlewares: []
+
+env:
+  TZ: "Etc/UTC"
+  PUID: 568
+  PGID: 568
+  UMASK: 002
+  
+envList: []
+
+probes:
+  readiness:
+    enabled: false
+    path: /
+  liveness:
+    enabled: false
+    path: /
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/config"
+    type: pvc
+    size: "1Gi"
+    accessMode: ReadWriteOnce
+
+nameOverride: ""
+
+fullnameOverride: ""
