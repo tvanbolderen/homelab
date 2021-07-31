@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "common.names.fullname" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.controller.replicas }}
+  strategy:
+    type: {{ .Values.controller.strategy }}
+    {{- if eq .Values.controller.strategy "RollingUpdate" }}
+    rollingUpdate:
+      maxSurge: {{ .Values.controller.rollingUpdate.surge }}
+      maxUnavailable: {{ .Values.controller.rollingUpdate.unavailable }}
+    {{- end }}
+  selector:
+    matchLabels:
+      {{- include "common.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "common.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              protocol: TCP
+              containerPort: 80
+            - name: https
+              protocol: TCP
+              containerPort: 443
+          env:
+            {{- range $name, $value := .Values.env }}
+            - name: {{ quote $name }}
+              value: {{ quote $value }}
+            {{- end }}
+            {{- range $envList := .Values.envList }}
+            {{- if and $envList.name $envList.value }}
+            - name: {{ $envList.name }}
+              value: {{ $envList.value | quote }}
+            {{- else }}
+              {{- fail "Please specify name/value for environment variable" }}
+            {{- end }}
+            {{- end }}
+          volumeMounts:
+            - name: heimdall-config
+              mountPath: {{ .Values.persistence.config.mountPath }}
+          {{- if .Values.probes.readiness.enabled }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.probes.readiness.path }}
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 30
+            failureThreshold: 3
+            timeoutSeconds: 1
+          {{- end }}
+          {{- if .Values.probes.liveness.enabled }}
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.probes.liveness.path }}
+              port: https
+              scheme: HTTP
+            initialDelaySeconds: 30
+            failureThreshold: 3
+            timeoutSeconds: 1
+          {{- end }}
+
+      volumes:
+        - name: heimdall-config
+          {{- if .Values.persistence.config.enabled }}
+          {{- if eq .Values.persistence.config.type "pvc" }}
+          persistentVolumeClaim:
+            claimName: heimdall-config-pvc
+          {{- else if eq .Values.persistence.config.type "hostPath" }}
+          hostPath:
+            path: {{ .Values.persistence.config.hostPath }}
+            type: {{ .Values.persistence.config.hostPathType }}
+          {{- else }}
+            {{- fail (printf "Not a valid persistence.type (%s)" .Values.persistence.config.type) }}
+          {{- end }}
+          {{- end }}
