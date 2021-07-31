@@ -3,6 +3,20 @@ entries:
   common:
   - apiVersion: v2
     appVersion: none
+    created: "2021-07-31T00:20:59.883052126Z"
+    description: Common library for Helm Charts
+    digest: e4e1ed5d2faac9af8817f33710839cd6d6e63de8101e44c67da976d61d0815de
+    keywords:
+    - common
+    - library-chart
+    kubeVersion: '>=1.16.0-0'
+    name: common
+    type: library
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/common-0.2.1/common-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
+    appVersion: none
     created: "2021-07-30T15:47:26.765690014Z"
     description: Common library for Helm Charts
     digest: e2e3401b2b87b2449b6dd8b3ec333428136bd79efc8700026002aa6a8a1a9c96
@@ -57,6 +71,34 @@ entries:
   traefik:
   - apiVersion: v2
     appVersion: 2.4.9
+    created: "2021-07-31T00:21:00.063688629Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.1.0
+    - name: traefik
+      repository: https://helm.traefik.io/traefik
+      version: 10.1.1
+    description: Traefik is a modern HTTP reverse proxy and load balancer that makes
+      deploying microservices easy.
+    digest: 848d225fb7c787f94d9ab30ed624db389557c9de4ddcd02f975cc9e329d9e624
+    home: https://traefik.io
+    icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
+    keywords:
+    - traefik
+    - ingress
+    kubeVersion: '>=1.16.0-0'
+    name: traefik
+    sources:
+    - https://traefik.io/
+    - https://github.com/traefik/traefik
+    - https://github.com/traefik/traefik-helm-chart
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/traefik-0.1.1/traefik-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 2.4.9
     created: "2021-07-26T00:47:21.59591683Z"
     dependencies:
     - name: common
@@ -83,4 +125,4 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/traefik-0.1.0/traefik-0.1.0.tgz
     version: 0.1.0
-generated: "2021-07-30T21:18:50.537945783Z"
+generated: "2021-07-31T00:21:00.06373393Z"
