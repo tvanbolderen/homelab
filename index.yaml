@@ -57,6 +57,29 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/common-0.1.0/common-0.1.0.tgz
     version: 0.1.0
+  heimdall:
+  - apiVersion: v2
+    appVersion: auto
+    created: "2021-07-31T15:15:25.779565933Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Heimdall Application Dashboard is a dashboard for all your web applications.
+    digest: 44dad476a0f36f91399950ff1322a30473bf7a6017a04a10bb3a809bf2ec2b14
+    home: https://heimdall.site
+    icon: https://i.imgur.com/mM4tcO5.png
+    keywords:
+    - heimdall
+    kubeVersion: '>=1.16.0-0'
+    name: heimdall
+    sources:
+    - https://github.com/linuxserver/Heimdall
+    - https://hub.docker.com/r/linuxserver/heimdall
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/heimdall-0.1.0/heimdall-0.1.0.tgz
+    version: 0.1.0
   pihole:
   - apiVersion: v2
     appVersion: auto
@@ -259,4 +282,4 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/traefik-0.1.0/traefik-0.1.0.tgz
     version: 0.1.0
-generated: "2021-07-31T14:06:07.510449338Z"
+generated: "2021-07-31T15:15:25.779603236Z"
