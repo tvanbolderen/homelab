@@ -1,0 +1,34 @@
+{{ if .Values.service.web.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "common.names.fullname" . }}-web
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.web.type }}
+  selector:
+    {{- include "common.selectorLabels" . | nindent 4 }}
+  ports:
+  {{- with .Values.service.web }}
+    {{- if .ports.http.enabled }}
+    - name: http
+      targetPort: http
+      port: {{ .ports.http.port }}
+      protocol: {{ .ports.http.protocol }}
+      {{- if and (eq .type "NodePort") (not (empty .ports.http.nodePort)) }}
+      nodePort: {{ .ports.http.nodePort }}
+      {{- end }}
+    {{- end }}
+    {{- if .ports.https.enabled }}
+    - name: https
+      targetPort: https
+      port: {{ .ports.https.port }}
+      protocol: {{.ports.https.protocol }}
+      {{- if and (eq .type "NodePort") (not (empty .ports.https.nodePort)) }}
+      nodePort: {{ .ports.https.nodePort }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
