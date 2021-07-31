@@ -452,59 +452,75 @@ questions:
                 schema:
                   type: boolean
                   default: true
-              - variable: mountPath
-                label: "mountPath"
-                description: "Path inside the container where the storage is mounted"
-                schema:
-                  type: string
-                  default: "/etc/pihole"
-                  hidden: true
-              - variable: type
-                label: "Type of Storage"
-                description: "Sets the persistence type"
-                schema:
-                  type: string
-                  default: "pvc"
-                  enum:
-                    - value: "pvc"
-                      description: "pvc"
-                    - value: "hostPath"
-                      description: "hostPath"
-              - variable: hostPath
-                label: "hostPath"
-                description: "Path inside the container the storage is mounted"
-                schema:
-                  show_if: [["type", "=", "hostPath"]]
-                  type: hostpath
-              - variable: hostPathType
-                label: "hostPath Type"
-                schema:
-                  show_if: [["type", "=", "hostPath"]]
-                  type: string
-                  default: ""
-                  enum:
-                    - value: ""
-                      description: "Default"
-                    - value: "DirectoryOrCreate"
-                      description: "DirectoryOrCreate"
-                    - value: "Directory"
-                      description: "Directory"
-                    - value: "FileOrCreate"
-                      description: "FileOrCreate"
-                    - value: "File"
-                      description: "File"
-                    - value: "Socket"
-                      description: "Socket"
-                    - value: "CharDevice"
-                      description: "CharDevice"
-                    - value: "BlockDevice"
-                      description: "BlockDevice"
-              - variable: size
-                label: "Size quotum of storage"
-                schema:
-                  show_if: [["type", "=", "pvc"]]
-                  type: string
-                  default: "1Gi"
+                  show_subquestions_if: true
+                  subquestions:
+                    - variable: mountPath
+                      label: "mountPath"
+                      description: "Path inside the container where the storage is mounted"
+                      schema:
+                        type: string
+                        default: "/etc/pihole"
+                        hidden: true
+                    - variable: type
+                      label: "Type of Storage"
+                      description: "Sets the persistence type"
+                      schema:
+                        type: string
+                        default: "pvc"
+                        enum:
+                          - value: "pvc"
+                            description: "pvc"
+                          - value: "hostPath"
+                            description: "hostPath"
+                    - variable: hostPath
+                      label: "hostPath"
+                      description: "Path inside the container the storage is mounted"
+                      schema:
+                        show_if: [["type", "=", "hostPath"]]
+                        type: hostpath
+                    - variable: hostPathType
+                      label: "hostPath Type"
+                      schema:
+                        show_if: [["type", "=", "hostPath"]]
+                        type: string
+                        default: ""
+                        enum:
+                          - value: ""
+                            description: "Default"
+                          - value: "DirectoryOrCreate"
+                            description: "DirectoryOrCreate"
+                          - value: "Directory"
+                            description: "Directory"
+                          - value: "FileOrCreate"
+                            description: "FileOrCreate"
+                          - value: "File"
+                            description: "File"
+                          - value: "Socket"
+                            description: "Socket"
+                          - value: "CharDevice"
+                            description: "CharDevice"
+                          - value: "BlockDevice"
+                            description: "BlockDevice"
+                    - variable: accessMode
+                      label: "Access Mode (Advanced)"
+                      description: "Allow or disallow multiple PVC's writhing to the same PV"
+                      schema:
+                        show_if: [["type", "=", "pvc"]]
+                        type: string
+                        default: "ReadWriteOnce"
+                        enum:
+                          - value: "ReadWriteOnce"
+                            description: "ReadWriteOnce"
+                          - value: "ReadOnlyMany"
+                            description: "ReadOnlyMany"
+                          - value: "ReadWriteMany"
+                            description: "ReadWriteMany"
+                    - variable: size
+                      label: "Size quotum of storage"
+                      schema:
+                        show_if: [["type", "=", "pvc"]]
+                        type: string
+                        default: "1Gi"
         - variable: dnsmasq
           label: "DNSMASQ Configuration Storage"
           schema:
@@ -515,59 +531,75 @@ questions:
                 schema:
                   type: boolean
                   default: true
-              - variable: mountPath
-                label: "mountPath"
-                description: "Path inside the container where the storage is mounted"
-                schema:
-                  type: string
-                  default: "/etc/dnsmasq.d"
-                  hidden: true
-              - variable: type
-                label: "Type of Storage"
-                description: "Sets the persistence type"
-                schema:
-                  type: string
-                  default: "pvc"
-                  enum:
-                    - value: "pvc"
-                      description: "pvc"
-                    - value: "hostPath"
-                      description: "hostPath"
-              - variable: hostPath
-                label: "hostPath"
-                description: "Path inside the container the storage is mounted"
-                schema:
-                  show_if: [["type", "=", "hostPath"]]
-                  type: hostpath
-              - variable: hostPathType
-                label: "hostPath Type"
-                schema:
-                  show_if: [["type", "=", "hostPath"]]
-                  type: string
-                  default: ""
-                  enum:
-                    - value: ""
-                      description: "Default"
-                    - value: "DirectoryOrCreate"
-                      description: "DirectoryOrCreate"
-                    - value: "Directory"
-                      description: "Directory"
-                    - value: "FileOrCreate"
-                      description: "FileOrCreate"
-                    - value: "File"
-                      description: "File"
-                    - value: "Socket"
-                      description: "Socket"
-                    - value: "CharDevice"
-                      description: "CharDevice"
-                    - value: "BlockDevice"
-                      description: "BlockDevice"
-              - variable: size
-                label: "Size quotum of storage"
-                schema:
-                  show_if: [["type", "=", "pvc"]]
-                  type: string
-                  default: "1Gi"
+                  show_subquestions_if: true
+                  subquestions:
+                    - variable: mountPath
+                      label: "mountPath"
+                      description: "Path inside the container where the storage is mounted"
+                      schema:
+                        type: string
+                        default: "/etc/dnsmasq.d"
+                        hidden: true
+                    - variable: type
+                      label: "Type of Storage"
+                      description: "Sets the persistence type"
+                      schema:
+                        type: string
+                        default: "pvc"
+                        enum:
+                          - value: "pvc"
+                            description: "pvc"
+                          - value: "hostPath"
+                            description: "hostPath"
+                    - variable: hostPath
+                      label: "hostPath"
+                      description: "Path inside the container the storage is mounted"
+                      schema:
+                        show_if: [["type", "=", "hostPath"]]
+                        type: hostpath
+                    - variable: hostPathType
+                      label: "hostPath Type"
+                      schema:
+                        show_if: [["type", "=", "hostPath"]]
+                        type: string
+                        default: ""
+                        enum:
+                          - value: ""
+                            description: "Default"
+                          - value: "DirectoryOrCreate"
+                            description: "DirectoryOrCreate"
+                          - value: "Directory"
+                            description: "Directory"
+                          - value: "FileOrCreate"
+                            description: "FileOrCreate"
+                          - value: "File"
+                            description: "File"
+                          - value: "Socket"
+                            description: "Socket"
+                          - value: "CharDevice"
+                            description: "CharDevice"
+                          - value: "BlockDevice"
+                            description: "BlockDevice"
+                    - variable: accessMode
+                      label: "Access Mode (Advanced)"
+                      description: "Allow or disallow multiple PVC's writhing to the same PV"
+                      schema:
+                        show_if: [["type", "=", "pvc"]]
+                        type: string
+                        default: "ReadWriteOnce"
+                        enum:
+                          - value: "ReadWriteOnce"
+                            description: "ReadWriteOnce"
+                          - value: "ReadOnlyMany"
+                            description: "ReadOnlyMany"
+                          - value: "ReadWriteMany"
+                            description: "ReadWriteMany"
+                    - variable: size
+                      label: "Size quotum of storage"
+                      schema:
+                        show_if: [["type", "=", "pvc"]]
+                        type: string
+                        default: "1Gi"
 
   - variable: ingress
     label: "Traefik IngressRoute"
