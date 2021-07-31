@@ -3,6 +3,20 @@ entries:
   common:
   - apiVersion: v2
     appVersion: none
+    created: "2021-07-31T13:04:04.258318886Z"
+    description: Common library for Helm Charts
+    digest: 0f247b4f85f0233dd7ba5c63dada6e9337d345701c09153108baaee7b54a5e99
+    keywords:
+    - common
+    - library-chart
+    kubeVersion: '>=1.16.0-0'
+    name: common
+    type: library
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/common-0.3.0/common-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
+    appVersion: none
     created: "2021-07-31T00:20:59.883052126Z"
     description: Common library for Helm Charts
     digest: e4e1ed5d2faac9af8817f33710839cd6d6e63de8101e44c67da976d61d0815de
@@ -173,4 +187,4 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/traefik-0.1.0/traefik-0.1.0.tgz
     version: 0.1.0
-generated: "2021-07-31T00:57:57.197733737Z"
+generated: "2021-07-31T13:04:04.258339986Z"
