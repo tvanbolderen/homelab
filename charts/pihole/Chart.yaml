@@ -3,7 +3,7 @@ appVersion: auto
 dependencies:
   - name: common
     repository: https://tvanbolderen.github.io/homelab
-    version: '0.2.0'
+    version: '0.3.0'
 deprecated: false
 description: Pi-hole is a DNS sinkhole that protects your devices from unwanted content.
 home: https://github.com/pi-hole/pi-hole
@@ -17,4 +17,4 @@ sources:
   - https://github.com/pi-hole/pi-hole
   - https://hub.docker.com/r/pihole/pihole
 type: application
-version: 0.1.2
+version: 0.2.0

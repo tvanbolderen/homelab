@@ -1,6 +1,6 @@
 # pihole
 
-![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
 
 Pi-hole is a DNS sinkhole that protects your devices from unwanted content.
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://tvanbolderen.github.io/homelab | common | 0.2.0 |
+| https://tvanbolderen.github.io/homelab | common | 0.3.0 |
 
 ## Values
 
@@ -72,10 +72,10 @@ Kubernetes: `>=1.16.0-0`
 | service.web.ports.http.enabled | bool | `true` |  |
 | service.web.ports.http.port | int | `80` |  |
 | service.web.ports.http.primary | bool | `true` |  |
-| service.web.ports.http.protocol | string | `"TCP"` |  |
+| service.web.ports.http.protocol | string | `"HTTP"` |  |
 | service.web.ports.https.enabled | bool | `true` |  |
 | service.web.ports.https.port | int | `443` |  |
-| service.web.ports.https.protocol | string | `"TCP"` |  |
+| service.web.ports.https.protocol | string | `"HTTPS"` |  |
 | service.web.primary | bool | `true` |  |
 | service.web.type | string | `"ClusterIP"` |  |
 | webInterface.adminPassword | string | `"admin"` |  |

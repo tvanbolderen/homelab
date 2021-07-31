@@ -16,7 +16,11 @@ spec:
     - name: dns-tcp
       targetPort: dns-tcp
       port: {{ .ports.tcp.port }}
-      protocol: {{ .ports.tcp.protocol }}
+      {{- if or (eq .ports.tcp.protocol "HTTP") (eq .ports.tcp.protocol "HTTPS") }}
+      protocol: TCP
+      {{- else }}
+      protocol: {{ .ports.tcp.protocol | upper }}
+      {{- end }}
       {{- if and (eq .type "NodePort") (not (empty .ports.tcp.nodePort)) }}
       nodePort: {{ .ports.tcp.nodePort }}
       {{- end }}

@@ -16,7 +16,11 @@ spec:
     - name: http
       targetPort: http
       port: {{ .ports.http.port }}
-      protocol: {{ .ports.http.protocol }}
+      {{- if or (eq .ports.http.protocol "HTTP") (eq .ports.http.protocol "HTTPS") }}
+      protocol: TCP
+      {{- else }}
+      protocol: {{ .ports.http.protocol | upper }}
+      {{- end }}
       {{- if and (eq .type "NodePort") (not (empty .ports.http.nodePort)) }}
       nodePort: {{ .ports.http.nodePort }}
       {{- end }}
@@ -25,7 +29,11 @@ spec:
     - name: https
       targetPort: https
       port: {{ .ports.https.port }}
-      protocol: {{.ports.https.protocol }}
+      {{- if or (eq .ports.https.protocol "HTTP") (eq .ports.https.protocol "HTTPS") }}
+      protocol: TCP
+      {{- else }}
+      protocol: {{ .ports.https.protocol | upper }}
+      {{- end }}
       {{- if and (eq .type "NodePort") (not (empty .ports.https.nodePort)) }}
       nodePort: {{ .ports.https.nodePort }}
       {{- end }}

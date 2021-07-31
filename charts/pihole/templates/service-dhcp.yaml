@@ -16,7 +16,11 @@ spec:
     - name: dhcp-udp
       targetPort: dhcp-udp
       port: {{ .ports.dhcp.port }}
-      protocol: {{ .ports.dhcp.protocol }}
+      {{- if or (eq .ports.dhcp.protocol "HTTP") (eq .ports.dhcp.protocol "HTTPS") }}
+      protocol: TCP
+      {{- else }}
+      protocol: {{ .ports.dhcp.protocol | upper }}
+      {{- end }}
       {{- if and (eq .type "NodePort") (not (empty .ports.dhcp.nodePort)) }}
       nodePort: {{ .ports.dhcp.nodePort }}
       {{- end }}
