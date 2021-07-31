@@ -1,4 +1,4 @@
-{{- if .Values.persistence.config.enabled  }}
+{{- if and (.Values.persistence.config.enabled) (.Values.persistence.config.type "pvc") }}
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -8,12 +8,12 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
 spec:
   accessModes:
-    - {{ .Values.persistence.config.accessMode | quote }}
+    - {{ required (printf "accessMode is required for PVC") .Values.persistence.config.accessMode | quote }}
   resources:
     requests:
-      storage: {{ .Values.persistence.config.size | quote }}
+      storage: {{ required (printf "size is required for PVC") .Values.persistence.config.size | quote }}
 {{- end }}
-{{- if .Values.persistence.dnsmasq.enabled  }}
+{{- if and (.Values.persistence.dnsmasq.enabled) (.Values.persistence.dnsmasq.type "pvc")  }}
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -23,8 +23,8 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
 spec:
   accessModes:
-    - {{ .Values.persistence.dnsmasq.accessMode | quote }}
+    - {{ required (printf "accessMode is required for PVC") .Values.persistence.dnsmasq.accessMode | quote }}
   resources:
     requests:
-      storage: {{ .Values.persistence.dnsmasq.size | quote }}
+      storage: {{ required (printf "size is required for PVC") .Values.persistence.dnsmasq.size | quote }}
 {{- end }}
