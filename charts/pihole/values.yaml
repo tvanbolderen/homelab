@@ -21,11 +21,11 @@ service:
         enabled: true
         primary: true
         port: 80
-        protocol: TCP
+        protocol: HTTP
       https:
         enabled: true
         port: 443
-        protocol: TCP
+        protocol: HTTPS
   dns:
     enabled: false
     type: ClusterIP

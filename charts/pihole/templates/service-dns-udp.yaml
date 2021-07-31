@@ -16,7 +16,11 @@ spec:
     - name: dns-udp
       targetPort: dns-udp
       port: {{ .ports.udp.port }}
-      protocol: {{ .ports.udp.protocol }}
+      {{- if or (eq .ports.udp.protocol "HTTP") (eq .ports.udp.protocol "HTTPS") }}
+      protocol: TCP
+      {{- else }}
+      protocol: {{ .ports.udp.protocol | upper }}
+      {{- end }}
       {{- if and (eq .type "NodePort") (not (empty .ports.udp.nodePort)) }}
       nodePort: {{ .ports.udp.nodePort }}
       {{- end }}
