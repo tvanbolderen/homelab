@@ -356,7 +356,7 @@ questions:
                 description: "Path inside the container where the storage is mounted"
                 schema:
                   type: string
-                  default: "/etc/pihole"
+                  default: "/config"
                   hidden: true
               - variable: type
                 label: "Type of Storage"

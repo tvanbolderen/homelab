@@ -54,19 +54,21 @@ spec:
               path: {{ .Values.probes.readiness.path }}
               port: http
               scheme: HTTP
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             failureThreshold: 3
             timeoutSeconds: 1
+            periodSeconds: 10
           {{- end }}
           {{- if .Values.probes.liveness.enabled }}
           livenessProbe:
             httpGet:
               path: {{ .Values.probes.liveness.path }}
-              port: https
+              port: http
               scheme: HTTP
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             failureThreshold: 3
             timeoutSeconds: 1
+            periodSeconds: 10
           {{- end }}
 
       volumes:
