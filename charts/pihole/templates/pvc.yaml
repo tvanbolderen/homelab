@@ -1,4 +1,4 @@
-{{- if and (.Values.persistence.config.enabled) (.Values.persistence.config.type "pvc") }}
+{{- if and (.Values.persistence.config.enabled) (eq .Values.persistence.config.type "pvc") }}
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -13,7 +13,7 @@ spec:
     requests:
       storage: {{ required (printf "size is required for PVC") .Values.persistence.config.size | quote }}
 {{- end }}
-{{- if and (.Values.persistence.dnsmasq.enabled) (.Values.persistence.dnsmasq.type "pvc")  }}
+{{- if and (.Values.persistence.dnsmasq.enabled) (eq .Values.persistence.dnsmasq.type "pvc")  }}
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
