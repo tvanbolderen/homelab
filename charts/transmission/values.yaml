@@ -37,30 +37,6 @@ env:
 
 envList: []
 
-  # OPENVPN_PROVIDER: PIA
-  # OPENVPN_USERNAME: user
-  # OPENVPN_PASSWORD: pass
-  # OPENVPN_CONFIG: france
-
-  # - name: LOCAL_NETWORK
-  #   value: 192.168.1.0/24
-  # - name: OPENVPN_PROVIDER
-  #   value: NORDVPN
-  # # - name: OPENVPN_CONFIG
-  # #   value: france
-  # - name: OPENVPN_USERNAME
-  #   value: user
-  # - name: OPENVPN_PASSWORD
-  #   value: pass
-  # - name: CREATE_TUN_DEVICE
-  #   value: "true"
-  # - name: NORDVPN_COUNTRY
-  #   value: US
-  # - name: NORDVPN_CATEGORY
-  #   value: legacy_p2p
-  # - name: NORDVPN_PROTOCOL
-  #   value: tcp
-
 probes:
   readiness:
     enabled: false
