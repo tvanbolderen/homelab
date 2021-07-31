@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: auto
+dependencies:
+  - name: common
+    version: '0.3.0'
+    repository: https://tvanbolderen.github.io/homelab
+deprecated: false
+description: Heimdall Application Dashboard is a dashboard for all your web applications.
+home: https://heimdall.site
+icon: https://i.imgur.com/mM4tcO5.png
+keywords:
+  - heimdall
+kubeVersion: '>=1.16.0-0'
+name: heimdall
+sources:
+  - https://github.com/linuxserver/Heimdall
+  - https://hub.docker.com/r/linuxserver/heimdall
+type: application
+version: 0.1.1
