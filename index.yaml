@@ -328,4 +328,31 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/traefik-0.1.0/traefik-0.1.0.tgz
     version: 0.1.0
-generated: "2021-07-31T21:08:39.714090154Z"
+  transmission:
+  - apiVersion: v2
+    appVersion: auto
+    created: "2021-07-31T22:41:22.833780812Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Transmission (with OpenVPN support) is a fast, easy, and free BitTorrent
+      client.
+    digest: 45221161b2187f3a67a519933bc5f568d6ea0776411135f6bd0fc0105769f2e5
+    home: https://haugene.github.io/docker-transmission-openvpn
+    icon: https://github.com/transmission/transmission-icons/blob/master/Transmission.png?raw=true
+    keywords:
+    - transmission
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    name: transmission
+    sources:
+    - https://github.com/transmission/transmission
+    - https://github.com/haugene/docker-transmission-openvpn
+    - https://hub.docker.com/r/haugene/transmission-openvpn
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/transmission-0.1.0/transmission-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-07-31T22:41:22.833811511Z"
