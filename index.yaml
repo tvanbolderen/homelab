@@ -271,6 +271,33 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/pihole-0.1.0/pihole-0.1.0.tgz
     version: 0.1.0
+  prowlarr:
+  - apiVersion: v2
+    appVersion: auto
+    created: "2021-08-01T15:06:06.387827475Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Prowlarr is a indexer manager/proxy to integrate with your various
+      PVR apps.
+    digest: 7a2aade5d501a1d3d0ba499b6327198d326c805883cd5a10e3771aa87a5297f3
+    home: https://github.com/Prowlarr/Prowlarr
+    icon: https://github.com/Prowlarr/Prowlarr/blob/develop/Logo/400.png?raw=true
+    keywords:
+    - prowlarr
+    - indexer
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    name: prowlarr
+    sources:
+    - https://github.com/Prowlarr/Prowlarr
+    - https://hub.docker.com/r/linuxserver/prowlarr
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/prowlarr-0.1.0/prowlarr-0.1.0.tgz
+    version: 0.1.0
   traefik:
   - apiVersion: v2
     appVersion: 2.4.9
@@ -355,4 +382,4 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/transmission-0.1.0/transmission-0.1.0.tgz
     version: 0.1.0
-generated: "2021-07-31T22:41:22.833811511Z"
+generated: "2021-08-01T15:06:06.387860176Z"
