@@ -49,25 +49,25 @@ spec:
           volumeMounts:
             - name: transmission-config
               mountPath: {{ .Values.persistence.config.mountPath }}
-          {{- if .Values.probes.readiness.enabled }}
-          readinessProbe:
+          {{- if .Values.probes.startup.enabled }}
+          startupProbe:
             exec:
               command:
-                - {{ .Values.probes.readiness.command }}
-            initialDelaySeconds: 60
+                - {{ .Values.probes.startup.command }}
+            initialDelaySeconds: 0
             failureThreshold: 3
-            timeoutSeconds: 1
-            periodSeconds: 10
+            timeoutSeconds: 5
+            periodSeconds: 15
           {{- end }}
           {{- if .Values.probes.liveness.enabled }}
           livenessProbe:
             exec:
               command:
                 - {{ .Values.probes.liveness.command }}
-            initialDelaySeconds: 60
+            initialDelaySeconds: 0
             failureThreshold: 3
-            timeoutSeconds: 1
-            periodSeconds: 10
+            timeoutSeconds: 5
+            periodSeconds: 15
           {{- end }}
 
       volumes:

@@ -43,7 +43,7 @@ env:
 envList: []
 
 probes:
-  readiness:
+  startup:
     enabled: false
     command: /etc/scripts/healthcheck.sh
   liveness:

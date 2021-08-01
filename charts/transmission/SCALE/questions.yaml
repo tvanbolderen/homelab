@@ -63,8 +63,8 @@ questions:
       type: dict
       hidden: true
       attrs:
-        - variable: readiness
-          label: "Readiness probe"
+        - variable: startup
+          label: "Startup probe"
           schema:
             type: dict
             attrs:
