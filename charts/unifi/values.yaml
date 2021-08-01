@@ -59,7 +59,7 @@ service:
       speedtest:
         enabled: true
         port: 6789
-        protocol: TCP  
+        protocol: TCP
   # - Used for remote syslog capture.
   syslog:
     enabled: false
