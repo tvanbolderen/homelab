@@ -25,18 +25,5 @@ spec:
       nodePort: {{ .ports.http.nodePort }}
       {{- end }}
     {{- end }}
-    {{- if .ports.https.enabled }}
-    - name: https
-      targetPort: https
-      port: {{ .ports.https.port }}
-      {{- if or (eq .ports.https.protocol "HTTP") (eq .ports.https.protocol "HTTPS") }}
-      protocol: TCP
-      {{- else }}
-      protocol: {{ .ports.https.protocol | upper }}
-      {{- end }}
-      {{- if and (eq .type "NodePort") (not (empty .ports.https.nodePort)) }}
-      nodePort: {{ .ports.https.nodePort }}
-      {{- end }}
-    {{- end }}
   {{- end }}
 {{- end }}
