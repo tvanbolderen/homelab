@@ -74,12 +74,12 @@ questions:
                   hidden: true
                   type: boolean
                   default: true
-              - variable: command
-                label: "Command"
+              - variable: path
+                label: "Path"
                 schema:
                   hidden: true
                   type: string
-                  default: "/etc/scripts/healthcheck.sh"
+                  default: "/transmission/web/"
         - variable: liveness
           label: "Liveness probe"
           schema:
@@ -91,12 +91,12 @@ questions:
                   hidden: true
                   type: boolean
                   default: true
-              - variable: command
-                label: "Command"
+              - variable: path
+                label: "Path"
                 schema:
                   hidden: true
                   type: string
-                  default: "/etc/scripts/healthcheck.sh"
+                  default: "/transmission/web/"
 
   - variable: controller
     group: "Controller"

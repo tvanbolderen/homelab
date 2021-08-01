@@ -60,19 +60,21 @@ spec:
               mountPath: {{ .Values.persistence.config.mountPath }}
           {{- if .Values.probes.startup.enabled }}
           startupProbe:
-            exec:
-              command:
-                - {{ .Values.probes.startup.command }}
+            httpGet:
+              path: {{ .Values.probes.startup.path }}
+              port: https
+              scheme: HTTP
             initialDelaySeconds: 0
-            failureThreshold: 3
+            failureThreshold: 20
             timeoutSeconds: 5
             periodSeconds: 15
           {{- end }}
           {{- if .Values.probes.liveness.enabled }}
           livenessProbe:
-            exec:
-              command:
-                - {{ .Values.probes.liveness.command }}
+            httpGet:
+              path: {{ .Values.probes.liveness.path }}
+              port: https
+              scheme: HTTP
             initialDelaySeconds: 0
             failureThreshold: 3
             timeoutSeconds: 5
