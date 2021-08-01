@@ -1,6 +1,6 @@
 apiVersion: v2
 appVersion: auto
-dependencies: 
+dependencies:
   - name: common
     repository: https://tvanbolderen.github.io/homelab
     version: '0.3.0'

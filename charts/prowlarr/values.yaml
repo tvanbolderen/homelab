@@ -45,7 +45,6 @@ probes:
     enabled: false
     path: /
 
-
 persistence:
   config:
     enabled: true
