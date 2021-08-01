@@ -176,6 +176,13 @@ questions:
           schema:
             type: int
             default: 002
+
+  - variable: openvpn
+    group: "Container Configuration"
+    label: "OpenVPN Configuration"
+    schema:
+      type: dict
+      attrs:
         - variable: OPENVPN_PROVIDER
           label: "OPENVPN_PROVIDER"
           schema:

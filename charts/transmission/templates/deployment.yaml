@@ -46,6 +46,11 @@ spec:
               {{- fail "Please specify name/value for environment variable" }}
             {{- end }}
             {{- end }}
+            - name: OPENVPN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: {{ default "openvpn-password" }}
+                  name: {{ default "transmission-credentials" }}
           volumeMounts:
             - name: transmission-config
               mountPath: {{ .Values.persistence.config.mountPath }}
