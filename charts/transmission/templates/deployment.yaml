@@ -46,6 +46,10 @@ spec:
               {{- fail "Please specify name/value for environment variable" }}
             {{- end }}
             {{- end }}
+            - name: OPENVPN_PROVIDER
+              value: {{ .Values.openvpn.provider }}
+            - name: OPENVPN_USERNAME
+              value: {{ .Values.openvpn.username }}
             - name: OPENVPN_PASSWORD
               valueFrom:
                 secretKeyRef:
