@@ -13,7 +13,7 @@ spec:
     requests:
       storage: {{ required (printf "size is required for PVC") .Values.persistence.config.size | quote }}
 {{- end }}
-{{- if and (.Values.persistence.tv.enabled) (eq .Values.persistence.tv.type "pvc") }}
+{{- if and (.Values.persistence.movies.enabled) (eq .Values.persistence.movies.type "pvc") }}
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
