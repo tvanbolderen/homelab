@@ -26,14 +26,13 @@ Kubernetes: `>=1.16.0-0`
 |-----|------|---------|-------------|
 | controller.replicas | int | `1` |  |
 | controller.strategy | string | `"Recreate"` |  |
-| env.OPENVPN_PASSWORD | string | `"pass"` |  |
-| env.OPENVPN_PROVIDER | string | `"PIA"` |  |
-| env.OPENVPN_USERNAME | string | `"user"` |  |
 | env.PGID | int | `568` |  |
 | env.PUID | int | `568` |  |
 | env.TZ | string | `"Etc/UTC"` |  |
 | env.UMASK | int | `2` |  |
 | envList | list | `[]` |  |
+| envValueFrom.WEBPASSWORD.secretKeyRef.key | string | `"openvpn-password"` |  |
+| envValueFrom.WEBPASSWORD.secretKeyRef.name | string | `"transmission-credentials"` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"haugene/transmission-openvpn"` |  |
@@ -43,6 +42,9 @@ Kubernetes: `>=1.16.0-0`
 | ingress.web.routes[0].match | string | `"Host(`test.example.com`)"` |  |
 | ingress.web.routes[0].middlewares | list | `[]` |  |
 | nameOverride | string | `""` |  |
+| openvpn.password | string | `"pass"` |  |
+| openvpn.provider | string | `"PIA"` |  |
+| openvpn.username | string | `"user"` |  |
 | persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.config.enabled | bool | `true` |  |
 | persistence.config.mountPath | string | `"/data"` |  |
