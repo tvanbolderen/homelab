@@ -1,0 +1,72 @@
+# Default values for Sonarr
+image:
+  repository: linuxserver/sonarr
+  pullPolicy: IfNotPresent
+  tag: latest
+
+controller:
+  replicas: 1
+  strategy: Recreate
+
+service:
+  web:
+    enabled: true
+    primary: true
+    type: ClusterIP
+    ports:
+      http:
+        enabled: true
+        primary: true
+        port: 8989
+        protocol: HTTP
+
+ingress:
+  web:
+    enabled: false
+    entryPoints:
+      - websecure
+    routes:
+      - match: "Host(`test.example.com`)"
+        middlewares: []
+
+env:
+  TZ: "Etc/UTC"
+  PUID: 568
+  PGID: 568
+  UMASK: 002
+
+envList: []
+
+probes:
+  startup:
+    enabled: false
+    path: /
+  liveness:
+    enabled: false
+    path: /
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/config"
+    type: pvc
+    size: "1Gi"
+    accessMode: ReadWriteOnce
+
+  tv:
+    enabled: false
+    mountPath: "/tv"
+    type: pvc
+    size: "100Gi"
+    accessMode: ReadWriteOnce
+
+  downloads:
+    enabled: false
+    mountPath: "/downloads"
+    type: pvc
+    size: "100Gi"
+    accessMode: ReadWriteOnce
+
+nameOverride: ""
+
+fullnameOverride: ""
