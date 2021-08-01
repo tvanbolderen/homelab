@@ -1,15 +1,15 @@
-# sonarr
+# radarr
 
 ![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
 
-Sonarr is a PVR for Usenet and BitTorrent users.
+Radarr is a movie collection manager for Usenet and BitTorrent users.
 
-**Homepage:** <https://github.com/Sonarr/Sonarr>
+**Homepage:** <https://github.com/Radarr/Radarr>
 
 ## Source Code
 
-* <https://github.com/Sonarr/Sonarr>
-* <https://hub.docker.com/r/linuxserver/sonarr>
+* <https://github.com/Radarr/Radarr>
+* <https://hub.docker.com/r/linuxserver/radarr>
 
 ## Requirements
 
@@ -32,7 +32,7 @@ Kubernetes: `>=1.16.0-0`
 | envList | list | `[]` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"linuxserver/sonarr"` |  |
+| image.repository | string | `"linuxserver/radarr"` |  |
 | image.tag | string | `"latest"` |  |
 | ingress.web.enabled | bool | `false` |  |
 | ingress.web.entryPoints[0] | string | `"websecure"` |  |
@@ -49,18 +49,18 @@ Kubernetes: `>=1.16.0-0`
 | persistence.downloads.mountPath | string | `"/downloads"` |  |
 | persistence.downloads.size | string | `"100Gi"` |  |
 | persistence.downloads.type | string | `"pvc"` |  |
-| persistence.tv.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.tv.enabled | bool | `false` |  |
-| persistence.tv.mountPath | string | `"/tv"` |  |
-| persistence.tv.size | string | `"100Gi"` |  |
-| persistence.tv.type | string | `"pvc"` |  |
+| persistence.movies.accessMode | string | `"ReadWriteOnce"` |  |
+| persistence.movies.enabled | bool | `false` |  |
+| persistence.movies.mountPath | string | `"/movies"` |  |
+| persistence.movies.size | string | `"100Gi"` |  |
+| persistence.movies.type | string | `"pvc"` |  |
 | probes.liveness.enabled | bool | `false` |  |
 | probes.liveness.path | string | `"/"` |  |
 | probes.startup.enabled | bool | `false` |  |
 | probes.startup.path | string | `"/"` |  |
 | service.web.enabled | bool | `true` |  |
 | service.web.ports.http.enabled | bool | `true` |  |
-| service.web.ports.http.port | int | `8989` |  |
+| service.web.ports.http.port | int | `7878` |  |
 | service.web.ports.http.primary | bool | `true` |  |
 | service.web.ports.http.protocol | string | `"HTTP"` |  |
 | service.web.primary | bool | `true` |  |
