@@ -45,7 +45,7 @@ env:
   PUID: 568
   PGID: 568
   UMASK: 002
-  LOCAL_NETWORK: 10.0.0.0/8
+  LOCAL_NETWORK: 10.0.0.0/8,172.16.0.0/12
 
 # - VPN Configuration documentation can be found [here](https://haugene.github.io/docker-transmission-openvpn/)
 # @default
