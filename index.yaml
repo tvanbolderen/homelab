@@ -509,4 +509,26 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/transmission-0.1.0/transmission-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-01T17:55:58.214611292Z"
+  unifi:
+  - apiVersion: v2
+    appVersion: 6.2.26
+    created: "2021-08-01T23:35:11.257075825Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Unifi Controller
+    digest: 94746d744b90fcb35b380dab2b48f60c04e3f8557aea6ef2cac0ec2853d38a2c
+    home: https://www.ui.com
+    icon: https://fleet.linuxserver.io/images/linuxserver_unifi-controller.png
+    keywords:
+    - unifi
+    kubeVersion: '>=1.16.0-0'
+    name: unifi
+    sources:
+    - https://hub.docker.com/r/linuxserver/unifi-controller
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/unifi-0.1.0/unifi-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-08-01T23:35:11.25715373Z"
