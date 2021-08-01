@@ -26,6 +26,7 @@ Kubernetes: `>=1.16.0-0`
 |-----|------|---------|-------------|
 | controller.replicas | int | `1` |  |
 | controller.strategy | string | `"Recreate"` |  |
+| env.LOCAL_NETWORK | string | `"10.0.0.0/8"` |  |
 | env.PGID | int | `568` |  |
 | env.PUID | int | `568` |  |
 | env.TZ | string | `"Etc/UTC"` |  |
