@@ -1,0 +1,42 @@
+{{ if .Values.service.discovery.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "common.names.fullname" . }}-discovery
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.discovery.type }}
+  selector:
+    {{- include "common.selectorLabels" . | nindent 4 }}
+  ports:
+  {{- with .Values.service.discovery }}
+    {{- if .ports.discovery.enabled }}
+    - name: discovery
+      targetPort: discovery
+      port: {{ .ports.discovery.port }}
+      {{- if or (eq .ports.discovery.protocol "HTTP") (eq .ports.discovery.protocol "HTTPS") }}
+      protocol: TCP
+      {{- else }}
+      protocol: {{ .ports.discovery.protocol | upper }}
+      {{- end }}
+      {{- if and (eq .type "NodePort") (not (empty .ports.discovery.nodePort)) }}
+      nodePort: {{ .ports.discovery.nodePort }}
+      {{- end }}
+    {{- end }}
+    {{- if .ports.l2Discovery.enabled }}
+    - name: l2-discovery
+      targetPort: l2-discovery
+      port: {{ .ports.l2Discovery.port }}
+      {{- if or (eq .ports.l2Discovery.protocol "HTTP") (eq .ports.l2Discovery.protocol "HTTPS") }}
+      protocol: TCP
+      {{- else }}
+      protocol: {{ .ports.l2Discovery.protocol | upper }}
+      {{- end }}
+      {{- if and (eq .type "NodePort") (not (empty .ports.l2Discovery.nodePort)) }}
+      nodePort: {{ .ports.l2Discovery.nodePort }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
