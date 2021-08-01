@@ -28,7 +28,7 @@ portals:
       - "$kubernetes-resource_configmap_portal_host"
     ports:
       - "$kubernetes-resource_configmap_portal_port"
-    path: "/"
+    path: "/transmission/web/"
 
 questions:
 
@@ -54,7 +54,7 @@ questions:
             hidden: true
             editable: false
             type: string
-            default: "/"
+            default: "/transmission/web/"
 
   - variable: probes
     group: "Container Image"
@@ -63,8 +63,8 @@ questions:
       type: dict
       hidden: true
       attrs:
-        - variable: readiness
-          label: "Readiness probe"
+        - variable: startup
+          label: "Startup probe"
           schema:
             type: dict
             attrs:
@@ -74,12 +74,12 @@ questions:
                   hidden: true
                   type: boolean
                   default: true
-              - variable: command
-                label: "Command"
+              - variable: path
+                label: "Path"
                 schema:
                   hidden: true
                   type: string
-                  default: "/etc/scripts/healthcheck.sh"
+                  default: "/transmission/web/"
         - variable: liveness
           label: "Liveness probe"
           schema:
@@ -91,12 +91,12 @@ questions:
                   hidden: true
                   type: boolean
                   default: true
-              - variable: command
-                label: "Command"
+              - variable: path
+                label: "Path"
                 schema:
                   hidden: true
                   type: string
-                  default: "/etc/scripts/healthcheck.sh"
+                  default: "/transmission/web/"
 
   - variable: controller
     group: "Controller"
@@ -176,6 +176,38 @@ questions:
           schema:
             type: int
             default: 002
+        - variable: LOCAL_NETWORK
+          label: "LOCAL_NETWORK"
+          description: "Sets the local network that should have access. Accepts comma separated list. For the healthchecks to work, include K8S IP range as well (e.g. 10.0.0.0/8)"
+          schema:
+            type: string
+            default: 10.0.0.0/8
+
+  - variable: openvpn
+    group: "Container Configuration"
+    label: "OpenVPN Configuration"
+    schema:
+      type: dict
+      attrs:
+        - variable: OPENVPN_PROVIDER
+          label: "OPENVPN_PROVIDER"
+          description: "Sets the OpenVPN provider to use"
+          schema:
+            type: string
+            required: true
+        - variable: OPENVPN_USERNAME
+          label: "OPENVPN_USERNAME"
+          description: "Your OpenVPN username"
+          schema:
+            type: string
+            required: true
+        - variable: OPENVPN_PASSWORD
+          label: "OPENVPN_PASSWORD"
+          description: "Your OpenVPN password, beware of special charcters"
+          schema:
+            type: string
+            private: true
+            required: true
 
   - variable: envList
     group: "Container Configuration"

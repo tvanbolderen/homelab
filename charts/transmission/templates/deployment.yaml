@@ -46,28 +46,39 @@ spec:
               {{- fail "Please specify name/value for environment variable" }}
             {{- end }}
             {{- end }}
+            - name: OPENVPN_PROVIDER
+              value: {{ .Values.openvpn.provider }}
+            - name: OPENVPN_USERNAME
+              value: {{ .Values.openvpn.username }}
+            - name: OPENVPN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: {{ default "openvpn-password" }}
+                  name: {{ default "transmission-credentials" }}
           volumeMounts:
             - name: transmission-config
               mountPath: {{ .Values.persistence.config.mountPath }}
-          {{- if .Values.probes.readiness.enabled }}
-          readinessProbe:
-            exec:
-              command:
-                - {{ .Values.probes.readiness.command }}
-            initialDelaySeconds: 60
-            failureThreshold: 3
-            timeoutSeconds: 1
-            periodSeconds: 10
+          {{- if .Values.probes.startup.enabled }}
+          startupProbe:
+            httpGet:
+              path: {{ .Values.probes.startup.path }}
+              port: https
+              scheme: HTTP
+            initialDelaySeconds: 0
+            failureThreshold: 20
+            timeoutSeconds: 5
+            periodSeconds: 15
           {{- end }}
           {{- if .Values.probes.liveness.enabled }}
           livenessProbe:
-            exec:
-              command:
-                - {{ .Values.probes.liveness.command }}
-            initialDelaySeconds: 60
+            httpGet:
+              path: {{ .Values.probes.liveness.path }}
+              port: https
+              scheme: HTTP
+            initialDelaySeconds: 0
             failureThreshold: 3
-            timeoutSeconds: 1
-            periodSeconds: 10
+            timeoutSeconds: 5
+            periodSeconds: 15
           {{- end }}
 
       volumes:
