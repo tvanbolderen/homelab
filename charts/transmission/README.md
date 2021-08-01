@@ -1,6 +1,6 @@
 # transmission
 
-![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
+![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
 
 Transmission (with OpenVPN support) is a fast, easy, and free BitTorrent client.
 
@@ -26,7 +26,7 @@ Kubernetes: `>=1.16.0-0`
 |-----|------|---------|-------------|
 | controller.replicas | int | `1` |  |
 | controller.strategy | string | `"Recreate"` |  |
-| env.LOCAL_NETWORK | string | `"10.0.0.0/8"` |  |
+| env.LOCAL_NETWORK | string | `"10.0.0.0/8,172.16.0.0/12"` |  |
 | env.PGID | int | `568` |  |
 | env.PUID | int | `568` |  |
 | env.TZ | string | `"Etc/UTC"` |  |
