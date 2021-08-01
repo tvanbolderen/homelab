@@ -28,7 +28,7 @@ portals:
       - "$kubernetes-resource_configmap_portal_host"
     ports:
       - "$kubernetes-resource_configmap_portal_port"
-    path: "/transmission/web/"
+    path: "/"
 
 questions:
 
@@ -54,7 +54,7 @@ questions:
             hidden: true
             editable: false
             type: string
-            default: "/transmission/web/"
+            default: "/"
 
   - variable: probes
     group: "Container Image"
@@ -79,7 +79,7 @@ questions:
                 schema:
                   hidden: true
                   type: string
-                  default: "/transmission/web/"
+                  default: "/"
         - variable: liveness
           label: "Liveness probe"
           schema:
@@ -96,7 +96,7 @@ questions:
                 schema:
                   hidden: true
                   type: string
-                  default: "/transmission/web/"
+                  default: "/"
 
   - variable: controller
     group: "Controller"
@@ -178,32 +178,29 @@ questions:
             default: 002
         - variable: LOCAL_NETWORK
           label: "LOCAL_NETWORK"
-          description: "Sets the local network that should have access. Accepts comma separated list. For the healthchecks to work, include K8S IP range as well (e.g. 10.0.0.0/8)"
+          description: "Sets the local network that should have access. Accepts comma separated list. Include K8S ranges for healthchecks to work."
           schema:
             type: string
-            default: 10.0.0.0/8
+            default: 10.0.0.0/8,172.16.0.0/12,192.168.1.0/24
 
   - variable: openvpn
     group: "Container Configuration"
-    label: "OpenVPN Configuration"
+    label: ""
     schema:
       type: dict
       attrs:
-        - variable: OPENVPN_PROVIDER
+        - variable: provider
           label: "OPENVPN_PROVIDER"
-          description: "Sets the OpenVPN provider to use"
           schema:
             type: string
             required: true
-        - variable: OPENVPN_USERNAME
+        - variable: username
           label: "OPENVPN_USERNAME"
-          description: "Your OpenVPN username"
           schema:
             type: string
             required: true
-        - variable: OPENVPN_PASSWORD
+        - variable: password
           label: "OPENVPN_PASSWORD"
-          description: "Your OpenVPN password, beware of special charcters"
           schema:
             type: string
             private: true
