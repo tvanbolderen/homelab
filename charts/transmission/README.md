@@ -1,6 +1,6 @@
 # transmission
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
 
 Transmission (with OpenVPN support) is a fast, easy, and free BitTorrent client.
 
@@ -26,7 +26,6 @@ Kubernetes: `>=1.16.0-0`
 |-----|------|---------|-------------|
 | controller.replicas | int | `1` |  |
 | controller.strategy | string | `"Recreate"` |  |
-| env.OPENVPN_CONFIG | string | `"france"` |  |
 | env.OPENVPN_PASSWORD | string | `"pass"` |  |
 | env.OPENVPN_PROVIDER | string | `"PIA"` |  |
 | env.OPENVPN_USERNAME | string | `"user"` |  |
@@ -51,8 +50,8 @@ Kubernetes: `>=1.16.0-0`
 | persistence.config.type | string | `"pvc"` |  |
 | probes.liveness.command | string | `"/etc/scripts/healthcheck.sh"` |  |
 | probes.liveness.enabled | bool | `false` |  |
-| probes.readiness.command | string | `"/etc/scripts/healthcheck.sh"` |  |
-| probes.readiness.enabled | bool | `false` |  |
+| probes.startup.command | string | `"/etc/scripts/healthcheck.sh"` |  |
+| probes.startup.enabled | bool | `false` |  |
 | service.web.enabled | bool | `true` |  |
 | service.web.ports.http.enabled | bool | `true` |  |
 | service.web.ports.http.port | int | `9091` |  |
