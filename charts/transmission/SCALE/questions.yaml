@@ -28,7 +28,7 @@ portals:
       - "$kubernetes-resource_configmap_portal_host"
     ports:
       - "$kubernetes-resource_configmap_portal_port"
-    path: "/"
+    path: "/transmission/web/"
 
 questions:
 
@@ -54,7 +54,7 @@ questions:
             hidden: true
             editable: false
             type: string
-            default: "/"
+            default: "/transmission/web/"
 
   - variable: probes
     group: "Container Image"
@@ -176,6 +176,22 @@ questions:
           schema:
             type: int
             default: 002
+        - variable: OPENVPN_PROVIDER
+          label: "OPENVPN_PROVIDER"
+          schema:
+            type: string
+            required: true
+        - variable: OPENVPN_USERNAME
+          label: "OPENVPN_USERNAME"
+          schema:
+            type: string
+            required: true
+        - variable: OPENVPN_PASSWORD
+          label: "OPENVPN_PASSWORD"
+          schema:
+            type: string
+            private: true
+            required: true
 
   - variable: envList
     group: "Container Configuration"

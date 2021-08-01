@@ -34,13 +34,11 @@ env:
   PUID: 568
   PGID: 568
   UMASK: 002
-
-  # - Documentation can be found [here](https://github.com/haugene/docker-transmission-openvpn/tree/master/docs)
+  # - VPN Configuration documentation can be found [here](https://haugene.github.io/docker-transmission-openvpn/)
   # @default
   OPENVPN_PROVIDER: PIA
   OPENVPN_USERNAME: user
   OPENVPN_PASSWORD: pass
-  OPENVPN_CONFIG: france
 
 envList: []
 
