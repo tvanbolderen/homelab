@@ -1,0 +1,59 @@
+# Default values for Prowlarr
+image:
+  repository: linuxserver/prowlarr
+  pullPolicy: IfNotPresent
+  tag: develop
+
+controller:
+  replicas: 1
+  strategy: Recreate
+
+service:
+  web:
+    enabled: true
+    primary: true
+    type: ClusterIP
+    ports:
+      http:
+        enabled: true
+        primary: true
+        port: 9696
+        protocol: HTTP
+
+ingress:
+  web:
+    enabled: false
+    entryPoints:
+      - websecure
+    routes:
+      - match: "Host(`test.example.com`)"
+        middlewares: []
+
+env:
+  TZ: "Etc/UTC"
+  PUID: 568
+  PGID: 568
+  UMASK: 002
+
+envList: []
+
+probes:
+  startup:
+    enabled: false
+    path: /
+  liveness:
+    enabled: false
+    path: /
+
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/config"
+    type: pvc
+    size: "1Gi"
+    accessMode: ReadWriteOnce
+
+nameOverride: ""
+
+fullnameOverride: ""

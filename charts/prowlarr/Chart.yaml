@@ -1,0 +1,22 @@
+apiVersion: v2
+appVersion: auto
+dependencies: 
+  - name: common
+    repository: https://tvanbolderen.github.io/homelab
+    version: '0.3.0'
+deprecated: false
+description: Prowlarr is a indexer manager/proxy to integrate with your various PVR apps.
+home: https://github.com/Prowlarr/Prowlarr
+icon: https://github.com/Prowlarr/Prowlarr/blob/develop/Logo/400.png?raw=true
+keywords:
+  - prowlarr
+  - indexer
+  - torrent
+  - usenet
+kubeVersion: '>=1.16.0-0'
+name: prowlarr
+sources:
+  - https://github.com/Prowlarr/Prowlarr
+  - https://hub.docker.com/r/linuxserver/prowlarr
+type: application
+version: 0.1.0
