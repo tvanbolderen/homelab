@@ -62,18 +62,18 @@ spec:
           startupProbe:
             httpGet:
               path: {{ .Values.probes.startup.path }}
-              port: https
+              port: http
               scheme: HTTP
             initialDelaySeconds: 0
-            failureThreshold: 20
+            failureThreshold: 60
             timeoutSeconds: 5
-            periodSeconds: 15
+            periodSeconds: 5
           {{- end }}
           {{- if .Values.probes.liveness.enabled }}
           livenessProbe:
             httpGet:
               path: {{ .Values.probes.liveness.path }}
-              port: https
+              port: http
               scheme: HTTP
             initialDelaySeconds: 0
             failureThreshold: 3
