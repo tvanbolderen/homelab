@@ -298,6 +298,31 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/prowlarr-0.1.0/prowlarr-0.1.0.tgz
     version: 0.1.0
+  radarr:
+  - apiVersion: v2
+    appVersion: auto
+    created: "2021-08-01T17:47:27.932813337Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Radarr is a movie collection manager for Usenet and BitTorrent users.
+    digest: 824f98445de965ec494d8f944a5b36646d06180e464e33e88512ca7dba130c84
+    home: https://github.com/Radarr/Radarr
+    icon: https://github.com/Radarr/Radarr/blob/develop/Logo/400.png?raw=true
+    keywords:
+    - radarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    name: radarr
+    sources:
+    - https://github.com/Radarr/Radarr
+    - https://hub.docker.com/r/linuxserver/radarr
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/radarr-0.1.0/radarr-0.1.0.tgz
+    version: 0.1.0
   sonarr:
   - apiVersion: v2
     appVersion: auto
@@ -460,4 +485,4 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/transmission-0.1.0/transmission-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-01T17:25:08.628877126Z"
+generated: "2021-08-01T17:47:27.932852634Z"
