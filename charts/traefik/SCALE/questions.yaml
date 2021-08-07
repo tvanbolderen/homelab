@@ -77,6 +77,55 @@ questions:
                 schema:
                   type: string
 
+        - variable: env
+          label: "Traefik environment variables"
+          schema:
+            type: list
+            default: []
+            items:
+              - variable: envItem
+                label: "Environment Variable"
+                schema:
+                  type: dict
+                  attrs:
+                    - variable: name
+                      label: "Name"
+                      schema:
+                        type: string
+                    - variable: value
+                      label: "Value"
+                      schema:
+                        type: string
+
+        - variable: logs
+          label: "Traefik logs"
+          schema:
+            type: dict
+            attrs:
+              - variable: general
+                label: ""
+                schema:
+                  type: dict
+                  attrs:
+                    - variable: level
+                      label: "Level"
+                      schema:
+                        type: string
+                        default: "ERROR"
+                        enum:
+                          - value: DEBUG
+                            description: DEBUG
+                          - value: PANIC
+                            description: PANIC
+                          - value: FATAL
+                            description: FATAL
+                          - value: ERROR
+                            description: ERROR
+                          - value: WARN
+                            description: WARN
+                          - value: INFO
+                            description: INFO
+
         - variable: ports
           label: "Configure ports"
           schema:
