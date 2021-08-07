@@ -8,29 +8,6 @@ image:
   name: traefik
   tag: '2.4.9'
 
-portal:
-  protocol: "http"
-  host: "$node_ip"
-  port: "9000"
-  path: "/dashboard/"
-
-# Override `traefik` subchart values
-traefik:
-  tlsOptions:
-    default:
-      sniStrict: false
-      minVersion: VersionTLS12
-      curvePreferences:
-        - CurveP521
-        - CurveP384
-      cipherSuites:
-        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
-        - TLS_AES_128_GCM_SHA256
-        - TLS_AES_256_GCM_SHA384
-        - TLS_CHACHA20_POLY1305_SHA256
-
 ##
 # Most other defaults are set in questions.yaml
 # For other options please refer to the default_values.yaml or the common library chart
