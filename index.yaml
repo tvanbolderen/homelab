@@ -375,6 +375,34 @@ entries:
   traefik:
   - apiVersion: v2
     appVersion: 2.4.9
+    created: "2021-08-07T13:21:18.456483336Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.1.0
+    - name: traefik
+      repository: https://helm.traefik.io/traefik
+      version: 10.1.1
+    description: Traefik is a modern HTTP reverse proxy and load balancer that makes
+      deploying microservices easy.
+    digest: 6765d44bba5941a8fe198e39cbd56515b2ce2161e708836f0c11692c20d2e879
+    home: https://traefik.io
+    icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
+    keywords:
+    - traefik
+    - ingress
+    kubeVersion: '>=1.16.0-0'
+    name: traefik
+    sources:
+    - https://traefik.io/
+    - https://github.com/traefik/traefik
+    - https://github.com/traefik/traefik-helm-chart
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/traefik-0.1.2/traefik-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 2.4.9
     created: "2021-07-31T00:21:00.063688629Z"
     dependencies:
     - name: common
@@ -531,4 +559,4 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/unifi-0.1.0/unifi-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-01T23:35:11.25715373Z"
+generated: "2021-08-07T13:21:18.456530736Z"
