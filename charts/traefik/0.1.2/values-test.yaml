@@ -1,0 +1,43 @@
+# Default values for Traefik
+
+# Override `traefik` subchart values
+traefik:
+  globalArguments:
+    - "--global.checknewversion"
+
+  additionalArguments:
+    - "--ping"
+    - "--serverstransport.insecureskipverify=true"
+
+  ports:
+    traefik:
+      expose: true
+      port: 9000
+      exposedPort: 9000
+    metrics:
+      expose: true
+      port: 9100
+      exposedPort: 9100
+    web:
+      port: 9080
+      exposedPort: 9080
+    websecure:
+      port: 9443
+      exposedPort: 9443
+      tls:
+        enabled: true
+
+  tlsOptions:
+    default:
+      sniStrict: false
+      minVersion: VersionTLS12
+      curvePreferences:
+        - CurveP521
+        - CurveP384
+      cipherSuites:
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
+        - TLS_AES_128_GCM_SHA256
+        - TLS_AES_256_GCM_SHA384
+        - TLS_CHACHA20_POLY1305_SHA256
