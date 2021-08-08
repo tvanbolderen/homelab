@@ -1,6 +1,6 @@
 # pihole
 
-![Version: 0.2.3](https://img.shields.io/badge/Version-0.2.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
+![Version: 0.2.4](https://img.shields.io/badge/Version-0.2.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
 
 Pi-hole is a DNS sinkhole that protects your devices from unwanted content.
 
@@ -36,10 +36,10 @@ Kubernetes: `>=1.16.0-0`
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"pihole/pihole"` |  |
 | image.tag | string | `"latest"` |  |
+| ingress.web.certResolver | string | `"letsencrypt"` |  |
 | ingress.web.enabled | bool | `false` |  |
-| ingress.web.entryPoints[0] | string | `"websecure"` |  |
-| ingress.web.routes[0].match | string | `"Host(`test.example.com`)"` |  |
-| ingress.web.routes[0].middlewares[0] | string | `"addprefix"` |  |
+| ingress.web.entryPoint | string | `"websecure"` |  |
+| ingress.web.match | string | `"Host(`test.example.com`)"` |  |
 | nameOverride | string | `""` |  |
 | persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.config.enabled | bool | `true` |  |
