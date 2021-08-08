@@ -27,11 +27,8 @@ service:
 ingress:
   web:
     enabled: false
-    entryPoints:
-      - websecure
-    routes:
-      - match: "Host(`test.example.com`)"
-        middlewares: []
+    entryPoints: websecure
+    match: "Host(`test.example.com`)"
 
 env:
   TZ: "Etc/UTC"
