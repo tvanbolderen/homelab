@@ -60,6 +60,28 @@ entries:
   heimdall:
   - apiVersion: v2
     appVersion: auto
+    created: "2021-08-08T13:02:13.756704839Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Heimdall Application Dashboard is a dashboard for all your web applications.
+    digest: 8a3661d419c85bf8a68c0928824d6a7ac86e387d36b496cc8a30f7d526e801d8
+    home: https://heimdall.site
+    icon: https://i.imgur.com/mM4tcO5.png
+    keywords:
+    - heimdall
+    kubeVersion: '>=1.16.0-0'
+    name: heimdall
+    sources:
+    - https://github.com/linuxserver/Heimdall
+    - https://hub.docker.com/r/linuxserver/heimdall
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/heimdall-0.1.2/heimdall-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: auto
     created: "2021-07-31T20:42:55.293893849Z"
     dependencies:
     - name: common
@@ -613,4 +635,4 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/unifi-0.1.0/unifi-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-08T12:07:53.009403859Z"
+generated: "2021-08-08T13:02:13.75680834Z"
