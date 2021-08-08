@@ -127,6 +127,30 @@ entries:
   pihole:
   - apiVersion: v2
     appVersion: auto
+    created: "2021-08-08T13:04:47.549728857Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Pi-hole is a DNS sinkhole that protects your devices from unwanted
+      content.
+    digest: 40bbcb783fd73e92fcfa0b6067c173279d3da5aa345beca2a5da6c49ec41a5ca
+    home: https://github.com/pi-hole/pi-hole
+    icon: https://i2.wp.com/pi-hole.net/wp-content/uploads/2016/12/Vortex-R.png
+    keywords:
+    - dns
+    kubeVersion: '>=1.16.0-0'
+    name: pihole
+    sources:
+    - https://pi-hole.net
+    - https://github.com/pi-hole/pi-hole
+    - https://hub.docker.com/r/pihole/pihole
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/pihole-0.2.4/pihole-0.2.4.tgz
+    version: 0.2.4
+  - apiVersion: v2
+    appVersion: auto
     created: "2021-07-31T21:08:39.714030652Z"
     dependencies:
     - name: common
@@ -635,4 +659,4 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/unifi-0.1.0/unifi-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-08T13:02:13.75680834Z"
+generated: "2021-08-08T13:04:47.549800758Z"
