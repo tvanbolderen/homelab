@@ -1,6 +1,6 @@
 # radarr
 
-![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
+![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
 
 Radarr is a movie collection manager for Usenet and BitTorrent users.
 
@@ -34,10 +34,10 @@ Kubernetes: `>=1.16.0-0`
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"linuxserver/radarr"` |  |
 | image.tag | string | `"latest"` |  |
+| ingress.web.certResolver | string | `"letsencrypt"` |  |
 | ingress.web.enabled | bool | `false` |  |
-| ingress.web.entryPoints[0] | string | `"websecure"` |  |
-| ingress.web.routes[0].match | string | `"Host(`test.example.com`)"` |  |
-| ingress.web.routes[0].middlewares | list | `[]` |  |
+| ingress.web.entryPoint | string | `"websecure"` |  |
+| ingress.web.match | string | `"Host(`test.example.com`)"` |  |
 | nameOverride | string | `""` |  |
 | persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.config.enabled | bool | `true` |  |
