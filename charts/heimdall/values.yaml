@@ -27,8 +27,9 @@ service:
 ingress:
   web:
     enabled: false
-    entryPoints: websecure
     match: "Host(`test.example.com`)"
+    entryPoint: websecure
+    certResolver: letsencrypt
 
 env:
   TZ: "Etc/UTC"
