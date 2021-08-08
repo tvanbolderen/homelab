@@ -34,8 +34,9 @@ Kubernetes: `>=1.16.0-0`
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"linuxserver/heimdall"` |  |
 | image.tag | string | `"version-2.2.2"` |  |
+| ingress.web.certResolver | string | `"letsencrypt"` |  |
 | ingress.web.enabled | bool | `false` |  |
-| ingress.web.entryPoints | string | `"websecure"` |  |
+| ingress.web.entryPoint | string | `"websecure"` |  |
 | ingress.web.match | string | `"Host(`test.example.com`)"` |  |
 | nameOverride | string | `""` |  |
 | persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
