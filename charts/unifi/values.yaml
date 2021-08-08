@@ -84,13 +84,11 @@ service:
         protocol: HTTPS
 
 ingress:
-  web:
+  gui:
     enabled: false
-    entryPoints:
-      - websecure
-    routes:
-      - match: "Host(`test.example.com`)"
-        middlewares: []
+    match: "Host(`test.example.com`)"
+    entryPoint: websecure
+    certResolver: letsencrypt
 
 env:
   TZ: "Etc/UTC"
