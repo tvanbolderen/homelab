@@ -50,12 +50,9 @@ service:
 ingress:
   web:
     enabled: false
-    entryPoints:
-      - websecure
-    routes:
-      - match: "Host(`test.example.com`)"
-        middlewares:
-          - addprefix
+    match: "Host(`test.example.com`)"
+    entryPoint: websecure
+    certResolver: letsencrypt
 
 webInterface:
   adminPassword: "admin"

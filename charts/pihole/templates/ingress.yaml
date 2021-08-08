@@ -8,21 +8,17 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
 spec:
   entryPoints:
-  {{- range .Values.ingress.web.entryPoints }}
-    - {{ . }}
-  {{- end }} 
+    - {{ .Values.ingress.web.entryPoint }}
   routes:
-  {{- range .Values.ingress.web.routes }}
-    - match: {{ .match }}
+    - match: {{ .Values.ingress.web.match }}
       kind: Rule
       services:
         - name: {{ include "common.names.fullname" $ }}-web
           port: {{ $.Values.service.web.ports.http.port }}
       middlewares:
-      {{- range .middlewares }}
-        - name: {{ printf "%s-%s" (include "common.names.fullname" $) . }}
-      {{- end }}
-  {{- end }}
+        - name: {{ include "common.names.fullname" . }}-addprefix
+  tls:
+    certResolver: {{ .Values.ingress.web.certResolver }}
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
