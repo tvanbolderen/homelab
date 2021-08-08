@@ -423,41 +423,18 @@ questions:
                   default: false
                   show_subquestions_if: true
                   subquestions:
-                    - variable: entryPoints
-                      label: "Traefik entry points"
+                    - variable: match
+                      label: "Routing Rule"
                       schema:
-                        type: list
-                        items:
-                          - variable: entryPoint
-                            label: ""
-                            schema:
-                              type: string
-                              enum:
-                                - value: "web"
-                                  description: "web"
-                                - value: "websecure"
-                                  description: "websecure"
-                    - variable: routes
-                      label: "Traefik routes"
+                        type: string
+                        default: ""
+                    - variable: entryPoint
+                      label: "Entry Point"
                       schema:
-                        type: list
-                        items:
-                          - variable: route
-                            label: ""
-                            schema:
-                              type: dict
-                              attrs:
-                                - variable: match
-                                  label: "Routing rule"
-                                  schema:
-                                    type: string
-                                - variable: middlewares
-                                  label: "Select middlewares"
-                                  schema:
-                                    type: list
-                                    items:
-                                      - variable: middleware
-                                        label: ""
-                                        schema:
-                                          type: string
-                                          enum: []
+                        type: string
+                        default: websecure
+                    - variable: certResolver
+                      label: "Certificate Resolver"
+                      schema:
+                        type: string
+                        default: letsencrypt
