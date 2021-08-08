@@ -274,6 +274,32 @@ entries:
   prowlarr:
   - apiVersion: v2
     appVersion: auto
+    created: "2021-08-08T12:07:53.009353058Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Prowlarr is a indexer manager/proxy to integrate with your various
+      PVR apps.
+    digest: d2cdb686db7abfec395023bdab455ecd880bc7e0fbf1b11baff5252c5b09a1d1
+    home: https://github.com/Prowlarr/Prowlarr
+    icon: https://github.com/Prowlarr/Prowlarr/blob/develop/Logo/400.png?raw=true
+    keywords:
+    - prowlarr
+    - indexer
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    name: prowlarr
+    sources:
+    - https://github.com/Prowlarr/Prowlarr
+    - https://hub.docker.com/r/linuxserver/prowlarr
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/prowlarr-0.1.1/prowlarr-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: auto
     created: "2021-08-01T15:06:06.387827475Z"
     dependencies:
     - name: common
@@ -587,4 +613,4 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/unifi-0.1.0/unifi-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-07T20:57:17.086482779Z"
+generated: "2021-08-08T12:07:53.009403859Z"
