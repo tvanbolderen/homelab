@@ -1,6 +1,6 @@
 # heimdall
 
-![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
+![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
 
 Heimdall Application Dashboard is a dashboard for all your web applications.
 
@@ -35,9 +35,8 @@ Kubernetes: `>=1.16.0-0`
 | image.repository | string | `"linuxserver/heimdall"` |  |
 | image.tag | string | `"version-2.2.2"` |  |
 | ingress.web.enabled | bool | `false` |  |
-| ingress.web.entryPoints[0] | string | `"websecure"` |  |
-| ingress.web.routes[0].match | string | `"Host(`test.example.com`)"` |  |
-| ingress.web.routes[0].middlewares | list | `[]` |  |
+| ingress.web.entryPoints | string | `"websecure"` |  |
+| ingress.web.match | string | `"Host(`test.example.com`)"` |  |
 | nameOverride | string | `""` |  |
 | persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.config.enabled | bool | `true` |  |
