@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.2.26](https://img.shields.io/badge/AppVersion-6.2.26-informational?style=flat-square)
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.2.26](https://img.shields.io/badge/AppVersion-6.2.26-informational?style=flat-square)
 
 Unifi Controller
 
@@ -35,10 +35,10 @@ Kubernetes: `>=1.16.0-0`
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"linuxserver/unifi-controller"` |  |
 | image.tag | string | `"version-6.2.26"` |  |
-| ingress.web.enabled | bool | `false` |  |
-| ingress.web.entryPoints[0] | string | `"websecure"` |  |
-| ingress.web.routes[0].match | string | `"Host(`test.example.com`)"` |  |
-| ingress.web.routes[0].middlewares | list | `[]` |  |
+| ingress.gui.certResolver | string | `"letsencrypt"` |  |
+| ingress.gui.enabled | bool | `false` |  |
+| ingress.gui.entryPoint | string | `"websecure"` |  |
+| ingress.gui.match | string | `"Host(`test.example.com`)"` |  |
 | nameOverride | string | `""` |  |
 | persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.config.enabled | bool | `true` |  |

@@ -1,0 +1,20 @@
+{{- if .Values.ingress.gui.enabled }}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ include "common.names.fullname" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  entryPoints:
+    - {{ .Values.ingress.gui.entryPoint }}
+  routes:
+    - match: {{ .Values.ingress.gui.match }}
+      kind: Rule
+      services:
+        - name: {{ include "common.names.fullname" $ }}-gui
+          port: {{ $.Values.service.gui.ports.http.port }}
+  tls:
+    certResolver: {{ .Values.ingress.gui.certResolver }}
+{{- end }}
