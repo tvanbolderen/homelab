@@ -1,6 +1,6 @@
 # transmission
 
-![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
+![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
 
 Transmission (with OpenVPN support) is a fast, easy, and free BitTorrent client.
 
@@ -38,10 +38,10 @@ Kubernetes: `>=1.16.0-0`
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"haugene/transmission-openvpn"` |  |
 | image.tag | string | `"latest"` |  |
+| ingress.web.certResolver | string | `"letsencrypt"` |  |
 | ingress.web.enabled | bool | `false` |  |
-| ingress.web.entryPoints[0] | string | `"websecure"` |  |
-| ingress.web.routes[0].match | string | `"Host(`test.example.com`)"` |  |
-| ingress.web.routes[0].middlewares | list | `[]` |  |
+| ingress.web.entryPoint | string | `"websecure"` |  |
+| ingress.web.match | string | `"Host(`test.example.com`)"` |  |
 | nameOverride | string | `""` |  |
 | openvpn.password | string | `"pass"` |  |
 | openvpn.provider | string | `"PIA"` |  |
