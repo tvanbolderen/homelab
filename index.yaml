@@ -608,6 +608,33 @@ entries:
   transmission:
   - apiVersion: v2
     appVersion: auto
+    created: "2021-08-08T13:15:35.343973682Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Transmission (with OpenVPN support) is a fast, easy, and free BitTorrent
+      client.
+    digest: fecb2b64727dfb5aeca75dcdee9a59a4cacecefcaf8448d98091aa14788f59f4
+    home: https://haugene.github.io/docker-transmission-openvpn
+    icon: https://github.com/transmission/transmission-icons/blob/master/Transmission.png?raw=true
+    keywords:
+    - transmission
+    - openvpn
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    name: transmission
+    sources:
+    - https://github.com/transmission/transmission
+    - https://github.com/haugene/docker-transmission-openvpn
+    - https://hub.docker.com/r/haugene/transmission-openvpn
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/transmission-0.1.3/transmission-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: auto
     created: "2021-08-01T16:49:15.097930727Z"
     dependencies:
     - name: common
@@ -707,4 +734,4 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/unifi-0.1.0/unifi-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-08T13:12:06.526623159Z"
+generated: "2021-08-08T13:15:35.344038883Z"
