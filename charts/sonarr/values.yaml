@@ -19,7 +19,7 @@ service:
         primary: true
         port: 8989
         protocol: HTTP
-       
+
 ingress:
   web:
     enabled: false
