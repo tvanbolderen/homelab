@@ -1,0 +1,110 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "common.names.fullname" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.controller.replicas }}
+  strategy:
+    type: {{ .Values.controller.strategy }}
+    {{- if eq .Values.controller.strategy "RollingUpdate" }}
+    rollingUpdate:
+      maxSurge: {{ .Values.controller.rollingUpdate.surge }}
+      maxUnavailable: {{ .Values.controller.rollingUpdate.unavailable }}
+    {{- end }}
+  selector:
+    matchLabels:
+      {{- include "common.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "common.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              protocol: TCP
+              containerPort: 6767
+          env:
+            {{- range $name, $value := .Values.env }}
+            - name: {{ quote $name }}
+              value: {{ quote $value }}
+            {{- end }}
+            {{- range $envList := .Values.envList }}
+            {{- if and $envList.name $envList.value }}
+            - name: {{ $envList.name }}
+              value: {{ $envList.value | quote }}
+            {{- else }}
+              {{- fail "Please specify name/value for environment variable" }}
+            {{- end }}
+            {{- end }}
+          volumeMounts:
+            - name: bazarr-config
+              mountPath: {{ .Values.persistence.config.mountPath }}
+          {{- if .Values.probes.startup.enabled }}
+          startupProbe:
+            httpGet:
+              path: {{ .Values.probes.startup.path }}
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 0
+            failureThreshold: 3
+            timeoutSeconds: 1
+            periodSeconds: 10
+          {{- end }}
+          {{- if .Values.probes.liveness.enabled }}
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.probes.liveness.path }}
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 0
+            failureThreshold: 3
+            timeoutSeconds: 1
+            periodSeconds: 10
+          {{- end }}
+
+      volumes:
+        - name: bazarr-config
+          {{- if .Values.persistence.config.enabled }}
+          {{- if eq .Values.persistence.config.type "pvc" }}
+          persistentVolumeClaim:
+            claimName: bazarr-config-pvc
+          {{- else if eq .Values.persistence.config.type "hostPath" }}
+          hostPath:
+            path: {{ .Values.persistence.config.hostPath }}
+            type: {{ .Values.persistence.config.hostPathType }}
+          {{- else }}
+            {{- fail (printf "Not a valid persistence.type (%s)" .Values.persistence.config.type) }}
+          {{- end }}
+          {{- end }}
+        - name: bazarr-tv
+          {{- if .Values.persistence.tv.enabled }}
+          {{- if eq .Values.persistence.tv.type "pvc" }}
+          persistentVolumeClaim:
+            claimName: bazarr-tv-pvc
+          {{- else if eq .Values.persistence.tv.type "hostPath" }}
+          hostPath:
+            path: {{ .Values.persistence.tv.hostPath }}
+            type: {{ .Values.persistence.tv.hostPathType }}
+          {{- else }}
+            {{- fail (printf "Not a valid persistence.type (%s)" .Values.persistence.tv.type) }}
+          {{- end }}
+          {{- end }}
+        - name: bazarr-movies
+          {{- if .Values.persistence.movies.enabled }}
+          {{- if eq .Values.persistence.movies.type "pvc" }}
+          persistentVolumeClaim:
+            claimName: bazarr-movies-pvc
+          {{- else if eq .Values.persistence.movies.type "hostPath" }}
+          hostPath:
+            path: {{ .Values.persistence.movies.hostPath }}
+            type: {{ .Values.persistence.movies.hostPathType }}
+          {{- else }}
+            {{- fail (printf "Not a valid persistence.type (%s)" .Values.persistence.movies.type) }}
+          {{- end }}
+          {{- end }}
