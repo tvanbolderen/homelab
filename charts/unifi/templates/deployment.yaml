@@ -73,7 +73,7 @@ spec:
           startupProbe:
             httpGet:
               path: {{ .Values.probes.startup.path }}
-              port: web-https
+              port: gui-https
               scheme: HTTP
             initialDelaySeconds: 0
             failureThreshold: 3
@@ -84,7 +84,7 @@ spec:
           livenessProbe:
             httpGet:
               path: {{ .Values.probes.liveness.path }}
-              port: web-https
+              port: gui-https
               scheme: HTTP
             initialDelaySeconds: 0
             failureThreshold: 3
