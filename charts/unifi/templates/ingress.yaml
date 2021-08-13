@@ -14,7 +14,7 @@ spec:
       kind: Rule
       services:
         - name: {{ include "common.names.fullname" $ }}-gui
-          port: {{ $.Values.service.gui.ports.http.port }}
+          port: {{ $.Values.service.gui.ports.https.port }}
   tls:
     certResolver: {{ .Values.ingress.gui.certResolver }}
 {{- end }}
