@@ -1,0 +1,121 @@
+# Default values for Unifi
+image:
+  repository: linuxserver/unifi-controller
+  pullPolicy: IfNotPresent
+  tag: version-6.2.26
+
+controller:
+  replicas: 1
+  strategy: Recreate
+
+service:
+  # - Used for application GUI/API as seen in a web browser.
+  gui:
+    enabled: true
+    primary: true
+    type: ClusterIP
+    ports:
+      https:
+        enabled: true
+        primary: true
+        port: 8443
+        protocol: HTTPS
+  # - Used for device and application communication.
+  communication:
+    enabled: true
+    type: ClusterIP
+    ports:
+      communication:
+        enabled: true
+        port: 8080
+        protocol: TCP
+  # - Used for STUN.
+  stun:
+    enabled: true
+    type: ClusterIP
+    ports:
+      stun:
+        enabled: true
+        port: 3478
+        protocol: UDP
+  # - Used for device discovery.
+  discovery:
+    enabled: true
+    type: ClusterIP
+    ports:
+      discovery:
+        enabled: true
+        port: 10001
+        protocol: UDP
+      l2Discovery:
+        enabled: false
+        port: 1900
+        protocol: UDP
+  # - Used for UniFi mobile speed test.
+  speedtest:
+    enabled: false
+    type: ClusterIP
+    ports:
+      speedtest:
+        enabled: true
+        port: 6789
+        protocol: TCP
+  # - Used for remote syslog capture.
+  syslog:
+    enabled: false
+    type: ClusterIP
+    ports:
+      syslog:
+        enabled: true
+        port: 5514
+        protocol: UDP
+  # - Used for guest HTTP/HTTPS portal redirection.
+  guest:
+    enabled: false
+    type: ClusterIP
+    ports:
+      http:
+        enabled: true
+        port: 8880
+        protocol: HTTP
+      https:
+        enabled: true
+        port: 8843
+        protocol: HTTPS
+
+ingress:
+  gui:
+    enabled: false
+    match: "Host(`test.example.com`)"
+    entryPoint: websecure
+    certResolver: letsencrypt
+
+env:
+  TZ: "Etc/UTC"
+  PUID: 568
+  PGID: 568
+  UMASK: 002
+  MEM_LIMIT: 1024M
+  MEM_STARTUP: 1024M
+
+envList: []
+
+probes:
+  startup:
+    enabled: false
+    path: /
+  liveness:
+    enabled: false
+    path: /
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/config"
+    type: pvc
+    size: "1Gi"
+    accessMode: ReadWriteOnce
+
+nameOverride: ""
+
+fullnameOverride: ""
