@@ -220,8 +220,8 @@ questions:
     schema:
       type: dict
       attrs:
-        - variable: gui
-          label: "GUI"
+        - variable: web
+          label: "Web"
           description: ""
           schema:
             type: dict
@@ -258,7 +258,7 @@ questions:
                         type: dict
                         attrs:
                           - variable: https
-                            label: "HTTPS"
+                            label: "Web interface + API port"
                             schema:
                               type: dict
                               attrs:
@@ -300,8 +300,94 @@ questions:
                                     min: 9000
                                     max: 65535
                                     required: false
-        - variable: communication
-          label: "Communication"
+                          - variable: httpPortal
+                            label: "Captive Portal HTTP port"
+                            schema:
+                              type: dict
+                              attrs:
+                                - variable: enabled
+                                  label: "Enable the port"
+                                  schema:
+                                    type: boolean
+                                    default: true
+                                - variable: primary
+                                  label: "Primary port"
+                                  schema:
+                                    type: boolean
+                                    default: false
+                                - variable: protocol
+                                  label: "Port protcol"
+                                  schema:
+                                    type: string
+                                    default: "HTTP"
+                                    enum:
+                                      - value: HTTP
+                                        description: "HTTP"
+                                      - value: "HTTPS"
+                                        description: "HTTPS"
+                                      - value: TCP
+                                        description: "TCP"
+                                      - value: "UDP"
+                                        description: "UDP"
+                                - variable: port
+                                  label: "Port"
+                                  schema:
+                                    type: int
+                                    default: 8880
+                                    editable: false
+                                - variable: nodePort
+                                  label: "Node Port (Optional)"
+                                  description: "Only considered when service type is NodePort"
+                                  schema:
+                                    type: int
+                                    min: 9000
+                                    max: 65535
+                                    required: false
+                          - variable: httpsPortal
+                            label: "Captive Portal HTTPS port"
+                            schema:
+                              type: dict
+                              attrs:
+                                - variable: enabled
+                                  label: "Enable the port"
+                                  schema:
+                                    type: boolean
+                                    default: true
+                                - variable: primary
+                                  label: "Primary port"
+                                  schema:
+                                    type: boolean
+                                    default: false
+                                - variable: protocol
+                                  label: "Port protcol"
+                                  schema:
+                                    type: string
+                                    default: "HTTPS"
+                                    enum:
+                                      - value: HTTP
+                                        description: "HTTP"
+                                      - value: "HTTPS"
+                                        description: "HTTPS"
+                                      - value: TCP
+                                        description: "TCP"
+                                      - value: "UDP"
+                                        description: "UDP"
+                                - variable: port
+                                  label: "Port"
+                                  schema:
+                                    type: int
+                                    default: 8843
+                                    editable: false
+                                - variable: nodePort
+                                  label: "Node Port (Optional)"
+                                  description: "Only considered when service type is NodePort"
+                                  schema:
+                                    type: int
+                                    min: 9000
+                                    max: 65535
+                                    required: false
+        - variable: tcp
+          label: "TCP"
           description: ""
           schema:
             type: dict
@@ -318,7 +404,7 @@ questions:
                       description: "Make this the primary service (used in probes, notes, etc...)"
                       schema:
                         type: boolean
-                        default: true
+                        default: false
                     - variable: type
                       label: "Service Type"
                       description: ""
@@ -337,8 +423,8 @@ questions:
                       schema:
                         type: dict
                         attrs:
-                          - variable: communication
-                            label: "Device and application communication"
+                          - variable: controller
+                            label: "Controller port used for device command/control"
                             schema:
                               type: dict
                               attrs:
@@ -380,8 +466,52 @@ questions:
                                     min: 9000
                                     max: 65535
                                     required: false
-        - variable: stun
-          label: "Stun"
+                          - variable: speedtest
+                            label: "Speedtest port (used for UniFi mobile speed test)"
+                            schema:
+                              type: dict
+                              attrs:
+                                - variable: enabled
+                                  label: "Enable the port"
+                                  schema:
+                                    type: boolean
+                                    default: true
+                                - variable: primary
+                                  label: "Primary port"
+                                  schema:
+                                    type: boolean
+                                    default: false
+                                - variable: protocol
+                                  label: "Port protcol"
+                                  schema:
+                                    type: string
+                                    default: "TCP"
+                                    enum:
+                                      - value: HTTP
+                                        description: "HTTP"
+                                      - value: "HTTPS"
+                                        description: "HTTPS"
+                                      - value: TCP
+                                        description: "TCP"
+                                      - value: "UDP"
+                                        description: "UDP"
+                                - variable: port
+                                  label: "Port"
+                                  schema:
+                                    type: int
+                                    default: 6789
+                                    editable: false
+                                - variable: nodePort
+                                  label: "Node Port (Optional)"
+                                  description: "Only considered when service type is NodePort"
+                                  schema:
+                                    type: int
+                                    min: 9000
+                                    max: 65535
+                                    required: false
+
+        - variable: udp
+          label: "UDP"
           description: ""
           schema:
             type: dict
@@ -398,7 +528,7 @@ questions:
                       description: "Make this the primary service (used in probes, notes, etc...)"
                       schema:
                         type: boolean
-                        default: true
+                        default: false
                     - variable: type
                       label: "Service Type"
                       description: ""
@@ -418,7 +548,7 @@ questions:
                         type: dict
                         attrs:
                           - variable: stun
-                            label: "STUN"
+                            label: "STUN port"
                             schema:
                               type: dict
                               attrs:
@@ -460,45 +590,8 @@ questions:
                                     min: 9000
                                     max: 65535
                                     required: false
-        - variable: discovery
-          label: "Device discovery"
-          description: ""
-          schema:
-            type: dict
-            attrs:
-              - variable: enabled
-                label: "Enables or disables the service"
-                schema:
-                  type: boolean
-                  default: true
-                  show_subquestions_if: true
-                  subquestions:
-                    - variable: primary
-                      label: "Primary service"
-                      description: "Make this the primary service (used in probes, notes, etc...)"
-                      schema:
-                        type: boolean
-                        default: true
-                    - variable: type
-                      label: "Service Type"
-                      description: ""
-                      schema:
-                        type: string
-                        default: "ClusterIP"
-                        enum:
-                          - value: "NodePort"
-                            description: "NodePort"
-                          - value: "ClusterIP"
-                            description: "ClusterIP"
-                          - value: "LoadBalancer"
-                            description: "LoadBalancer"
-                    - variable: ports
-                      label: "Service's Port(s) Configuration"
-                      schema:
-                        type: dict
-                        attrs:
                           - variable: discovery
-                            label: "Discovery"
+                            label: "Device discovery port"
                             schema:
                               type: dict
                               attrs:
@@ -541,7 +634,7 @@ questions:
                                     max: 65535
                                     required: false
                           - variable: l2Discovery
-                            label: "L2 Discovery"
+                            label: "Device l2-discovery port"
                             schema:
                               type: dict
                               attrs:
@@ -549,7 +642,7 @@ questions:
                                   label: "Enable the port"
                                   schema:
                                     type: boolean
-                                    default: true
+                                    default: false
                                 - variable: primary
                                   label: "Primary port"
                                   schema:
@@ -583,133 +676,16 @@ questions:
                                     min: 9000
                                     max: 65535
                                     required: false
-        - variable: speedtest
-          label: "Speedtest"
-          description: ""
-          schema:
-            type: dict
-            attrs:
-              - variable: enabled
-                label: "Enables or disables the service"
-                schema:
-                  type: boolean
-                  default: true
-                  show_subquestions_if: true
-                  subquestions:
-                    - variable: primary
-                      label: "Primary service"
-                      description: "Make this the primary service (used in probes, notes, etc...)"
-                      schema:
-                        type: boolean
-                        default: true
-                    - variable: type
-                      label: "Service Type"
-                      description: ""
-                      schema:
-                        type: string
-                        default: "ClusterIP"
-                        enum:
-                          - value: "NodePort"
-                            description: "NodePort"
-                          - value: "ClusterIP"
-                            description: "ClusterIP"
-                          - value: "LoadBalancer"
-                            description: "LoadBalancer"
-                    - variable: ports
-                      label: "Service's Port(s) Configuration"
-                      schema:
-                        type: dict
-                        attrs:
-                          - variable: speedtest
-                            label: "Speedtest"
+                          - variable: syslog
+                            label: "Remote syslog port"
                             schema:
                               type: dict
                               attrs:
                                 - variable: enabled
                                   label: "Enable the port"
-                                  schema:
-                                    type: boolean
-                                    default: true
-                                - variable: primary
-                                  label: "Primary port"
                                   schema:
                                     type: boolean
                                     default: false
-                                - variable: protocol
-                                  label: "Port protcol"
-                                  schema:
-                                    type: string
-                                    default: "TCP"
-                                    enum:
-                                      - value: HTTP
-                                        description: "HTTP"
-                                      - value: "HTTPS"
-                                        description: "HTTPS"
-                                      - value: TCP
-                                        description: "TCP"
-                                      - value: "UDP"
-                                        description: "UDP"
-                                - variable: port
-                                  label: "Port"
-                                  schema:
-                                    type: int
-                                    default: 6789
-                                    editable: false
-                                - variable: nodePort
-                                  label: "Node Port (Optional)"
-                                  description: "Only considered when service type is NodePort"
-                                  schema:
-                                    type: int
-                                    min: 9000
-                                    max: 65535
-                                    required: false
-        - variable: syslog
-          label: "Syslog"
-          description: ""
-          schema:
-            type: dict
-            attrs:
-              - variable: enabled
-                label: "Enables or disables the service"
-                schema:
-                  type: boolean
-                  default: true
-                  show_subquestions_if: true
-                  subquestions:
-                    - variable: primary
-                      label: "Primary service"
-                      description: "Make this the primary service (used in probes, notes, etc...)"
-                      schema:
-                        type: boolean
-                        default: true
-                    - variable: type
-                      label: "Service Type"
-                      description: ""
-                      schema:
-                        type: string
-                        default: "ClusterIP"
-                        enum:
-                          - value: "NodePort"
-                            description: "NodePort"
-                          - value: "ClusterIP"
-                            description: "ClusterIP"
-                          - value: "LoadBalancer"
-                            description: "LoadBalancer"
-                    - variable: ports
-                      label: "Service's Port(s) Configuration"
-                      schema:
-                        type: dict
-                        attrs:
-                          - variable: syslog
-                            label: "Syslog"
-                            schema:
-                              type: dict
-                              attrs:
-                                - variable: enabled
-                                  label: "Enable the port"
-                                  schema:
-                                    type: boolean
-                                    default: true
                                 - variable: primary
                                   label: "Primary port"
                                   schema:
@@ -734,129 +710,6 @@ questions:
                                   schema:
                                     type: int
                                     default: 5514
-                                    editable: false
-                                - variable: nodePort
-                                  label: "Node Port (Optional)"
-                                  description: "Only considered when service type is NodePort"
-                                  schema:
-                                    type: int
-                                    min: 9000
-                                    max: 65535
-                                    required: false
-        - variable: guest
-          label: "Guest"
-          description: ""
-          schema:
-            type: dict
-            attrs:
-              - variable: enabled
-                label: "Enables or disables the service"
-                schema:
-                  type: boolean
-                  default: true
-                  show_subquestions_if: true
-                  subquestions:
-                    - variable: primary
-                      label: "Primary service"
-                      description: "Make this the primary service (used in probes, notes, etc...)"
-                      schema:
-                        type: boolean
-                        default: true
-                    - variable: type
-                      label: "Service Type"
-                      description: ""
-                      schema:
-                        type: string
-                        default: "ClusterIP"
-                        enum:
-                          - value: "NodePort"
-                            description: "NodePort"
-                          - value: "ClusterIP"
-                            description: "ClusterIP"
-                          - value: "LoadBalancer"
-                            description: "LoadBalancer"
-                    - variable: ports
-                      label: "Service's Port(s) Configuration"
-                      schema:
-                        type: dict
-                        attrs:
-                          - variable: http
-                            label: "HTTP"
-                            schema:
-                              type: dict
-                              attrs:
-                                - variable: enabled
-                                  label: "Enable the port"
-                                  schema:
-                                    type: boolean
-                                    default: true
-                                - variable: primary
-                                  label: "Primary port"
-                                  schema:
-                                    type: boolean
-                                    default: false
-                                - variable: protocol
-                                  label: "Port protcol"
-                                  schema:
-                                    type: string
-                                    default: "HTTP"
-                                    enum:
-                                      - value: HTTP
-                                        description: "HTTP"
-                                      - value: "HTTPS"
-                                        description: "HTTPS"
-                                      - value: TCP
-                                        description: "TCP"
-                                      - value: "UDP"
-                                        description: "UDP"
-                                - variable: port
-                                  label: "Port"
-                                  schema:
-                                    type: int
-                                    default: 8880
-                                    editable: false
-                                - variable: nodePort
-                                  label: "Node Port (Optional)"
-                                  description: "Only considered when service type is NodePort"
-                                  schema:
-                                    type: int
-                                    min: 9000
-                                    max: 65535
-                                    required: false
-                          - variable: https
-                            label: "HTTPS"
-                            schema:
-                              type: dict
-                              attrs:
-                                - variable: enabled
-                                  label: "Enable the port"
-                                  schema:
-                                    type: boolean
-                                    default: true
-                                - variable: primary
-                                  label: "Primary port"
-                                  schema:
-                                    type: boolean
-                                    default: false
-                                - variable: protocol
-                                  label: "Port protcol"
-                                  schema:
-                                    type: string
-                                    default: "HTTPS"
-                                    enum:
-                                      - value: HTTP
-                                        description: "HTTP"
-                                      - value: "HTTPS"
-                                        description: "HTTPS"
-                                      - value: TCP
-                                        description: "TCP"
-                                      - value: "UDP"
-                                        description: "UDP"
-                                - variable: port
-                                  label: "Port"
-                                  schema:
-                                    type: int
-                                    default: 8843
                                     editable: false
                                 - variable: nodePort
                                   label: "Node Port (Optional)"

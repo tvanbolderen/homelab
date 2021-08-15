@@ -9,82 +9,68 @@ controller:
   strategy: Recreate
 
 service:
-  # - Used for application GUI/API as seen in a web browser.
-  gui:
+  web:
     enabled: true
     primary: true
     type: ClusterIP
     ports:
+      # -- Configure Web interface + API port
       https:
         enabled: true
         primary: true
         port: 8443
         protocol: HTTPS
-  # - Used for device and application communication.
-  communication:
+      # -- Configure Captive Portal HTTP port
+      httpPortal:
+        enabled: true
+        port: 8880
+        protocol: HTTP
+      # -- Configure Captive Portal HTTPS port
+      httpsPortal:
+        enabled: true
+        port: 8843
+        protocol: HTTPS
+  tcp:
     enabled: true
     type: ClusterIP
     ports:
-      communication:
+      # -- Configure Controller port used for device command/control
+      controller:
         enabled: true
         port: 8080
         protocol: TCP
-  # - Used for STUN.
-  stun:
-    enabled: true
-    type: ClusterIP
-    ports:
-      stun:
-        enabled: true
-        port: 3478
-        protocol: UDP
-  # - Used for device discovery.
-  discovery:
-    enabled: true
-    type: ClusterIP
-    ports:
-      discovery:
-        enabled: true
-        port: 10001
-        protocol: UDP
-      l2Discovery:
-        enabled: false
-        port: 1900
-        protocol: UDP
-  # - Used for UniFi mobile speed test.
-  speedtest:
-    enabled: false
-    type: ClusterIP
-    ports:
+      # -- Configure Speedtest port (used for UniFi mobile speed test)
       speedtest:
         enabled: true
         port: 6789
         protocol: TCP
-  # - Used for remote syslog capture.
-  syslog:
-    enabled: false
+  udp:
+    enabled: true
     type: ClusterIP
     ports:
-      syslog:
+      # -- Configure STUN port
+      stun:
         enabled: true
+        port: 3478
+        protocol: UDP
+      # -- Configure device discovery port
+      discovery:
+        enabled: true
+        port: 10001
+        protocol: UDP
+      # -- Configure device l2-discovery port
+      l2Discovery:
+        enabled: false
+        port: 1900
+        protocol: UDP
+      # -- Configure remote syslog port
+      syslog:
+        enabled: false
         port: 5514
         protocol: UDP
-  # - Used for guest HTTP/HTTPS portal redirection.
-  guest:
-    enabled: false
-    type: ClusterIP
-    ports:
-      http:
-        enabled: true
-        port: 8880
-        protocol: HTTP
-      https:
-        enabled: true
-        port: 8843
-        protocol: HTTPS
 
 ingress:
-  gui:
+  web:
     enabled: false
     match: "Host(`test.example.com`)"
     entryPoint: websecure
