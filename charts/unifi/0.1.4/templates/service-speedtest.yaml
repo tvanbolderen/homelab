@@ -1,0 +1,29 @@
+{{ if .Values.service.speedtest.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "common.names.fullname" . }}-speedtest
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.speedtest.type }}
+  selector:
+    {{- include "common.selectorLabels" . | nindent 4 }}
+  ports:
+  {{- with .Values.speedtest.speedtest }}
+    {{- if .ports.speedtest.enabled }}
+    - name: speedtest
+      targetPort: speedtest
+      port: {{ .ports.speedtest.port }}
+      {{- if or (eq .ports.speedtest.protocol "HTTP") (eq .ports.speedtest.protocol "HTTPS") }}
+      protocol: TCP
+      {{- else }}
+      protocol: {{ .ports.speedtest.protocol | upper }}
+      {{- end }}
+      {{- if and (eq .type "NodePort") (not (empty .ports.speedtest.nodePort)) }}
+      nodePort: {{ .ports.speedtest.nodePort }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
