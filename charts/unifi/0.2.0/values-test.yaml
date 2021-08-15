@@ -1,0 +1,107 @@
+# Default values for Unifi
+image:
+  repository: linuxserver/unifi-controller
+  pullPolicy: IfNotPresent
+  tag: version-6.2.26
+
+controller:
+  replicas: 1
+  strategy: Recreate
+
+service:
+  web:
+    enabled: true
+    primary: true
+    type: ClusterIP
+    ports:
+      # -- Configure Web interface + API port
+      https:
+        enabled: true
+        primary: true
+        port: 8443
+        protocol: HTTPS
+      # -- Configure Captive Portal HTTP port
+      httpPortal:
+        enabled: true
+        port: 8880
+        protocol: HTTP
+      # -- Configure Captive Portal HTTPS port
+      httpsPortal:
+        enabled: true
+        port: 8843
+        protocol: HTTPS
+  tcp:
+    enabled: true
+    type: ClusterIP
+    ports:
+      # -- Configure Controller port used for device command/control
+      controller:
+        enabled: true
+        port: 8080
+        protocol: TCP
+      # -- Configure Speedtest port (used for UniFi mobile speed test)
+      speedtest:
+        enabled: true
+        port: 6789
+        protocol: TCP
+  udp:
+    enabled: true
+    type: ClusterIP
+    ports:
+      # -- Configure STUN port
+      stun:
+        enabled: true
+        port: 3478
+        protocol: UDP
+      # -- Configure device discovery port
+      discovery:
+        enabled: true
+        port: 10001
+        protocol: UDP
+      # -- Configure device l2-discovery port
+      l2Discovery:
+        enabled: false
+        port: 1900
+        protocol: UDP
+      # -- Configure remote syslog port
+      syslog:
+        enabled: false
+        port: 5514
+        protocol: UDP
+
+ingress:
+  web:
+    enabled: false
+    match: "Host(`test.example.com`)"
+    entryPoint: websecure
+    certResolver: letsencrypt
+
+env:
+  TZ: "Etc/UTC"
+  PUID: 568
+  PGID: 568
+  UMASK: 002
+  MEM_LIMIT: 1024M
+  MEM_STARTUP: 1024M
+
+envList: []
+
+probes:
+  startup:
+    enabled: false
+    path: /
+  liveness:
+    enabled: false
+    path: /
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/config"
+    type: pvc
+    size: "1Gi"
+    accessMode: ReadWriteOnce
+
+nameOverride: ""
+
+fullnameOverride: ""
