@@ -810,7 +810,7 @@ questions:
     schema:
       type: dict
       attrs:
-        - variable: gui
+        - variable: web
           label: ""
           schema:
             type: dict
