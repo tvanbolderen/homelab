@@ -26,31 +26,31 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: communication
-              protocol: TCP
-              containerPort: 8080
-            - name: gui-https
+            - name: https
               protocol: TCP
               containerPort: 8443
+            - name: controller
+              protocol: TCP
+              containerPort: 8080
             - name: stun
               protocol: UDP
               containerPort: 3478
             - name: discovery
               protocol: UDP
               containerPort: 10001
+            - name: l2-discovery 
+              protocol: UDP
+              containerPort: 1900
             - name: speedtest
               protocol: TCP
               containerPort: 6789
             - name: syslog
               protocol: UDP
               containerPort: 5514
-            - name: l2-discovery 
-              protocol: UDP
-              containerPort: 1900
-            - name: guest-http
+            - name: http-portal
               protocol: TCP
               containerPort: 8880
-            - name: guest-https
+            - name: https-portal
               protocol: TCP
               containerPort: 8843
           env:
@@ -73,7 +73,7 @@ spec:
           startupProbe:
             httpGet:
               path: {{ .Values.probes.startup.path }}
-              port: gui-https
+              port: https
               scheme: HTTPS
             initialDelaySeconds: 0
             failureThreshold: 3
@@ -84,7 +84,7 @@ spec:
           livenessProbe:
             httpGet:
               path: {{ .Values.probes.liveness.path }}
-              port: gui-https
+              port: https
               scheme: HTTPS
             initialDelaySeconds: 0
             failureThreshold: 3
