@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 0.1.4](https://img.shields.io/badge/Version-0.1.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.2.26](https://img.shields.io/badge/AppVersion-6.2.26-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.2.26](https://img.shields.io/badge/AppVersion-6.2.26-informational?style=flat-square)
 
 Unifi Controller
 
@@ -35,10 +35,10 @@ Kubernetes: `>=1.16.0-0`
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"linuxserver/unifi-controller"` |  |
 | image.tag | string | `"version-6.2.26"` |  |
-| ingress.gui.certResolver | string | `"letsencrypt"` |  |
-| ingress.gui.enabled | bool | `false` |  |
-| ingress.gui.entryPoint | string | `"websecure"` |  |
-| ingress.gui.match | string | `"Host(`test.example.com`)"` |  |
+| ingress.web.certResolver | string | `"letsencrypt"` |  |
+| ingress.web.enabled | bool | `false` |  |
+| ingress.web.entryPoint | string | `"websecure"` |  |
+| ingress.web.match | string | `"Host(`test.example.com`)"` |  |
 | nameOverride | string | `""` |  |
 | persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.config.enabled | bool | `true` |  |
@@ -49,49 +49,22 @@ Kubernetes: `>=1.16.0-0`
 | probes.liveness.path | string | `"/"` |  |
 | probes.startup.enabled | bool | `false` |  |
 | probes.startup.path | string | `"/"` |  |
-| service.communication.enabled | bool | `true` |  |
-| service.communication.ports.communication.enabled | bool | `true` |  |
-| service.communication.ports.communication.port | int | `8080` |  |
-| service.communication.ports.communication.protocol | string | `"TCP"` |  |
-| service.communication.type | string | `"ClusterIP"` |  |
-| service.discovery.enabled | bool | `true` |  |
-| service.discovery.ports.discovery.enabled | bool | `true` |  |
-| service.discovery.ports.discovery.port | int | `10001` |  |
-| service.discovery.ports.discovery.protocol | string | `"UDP"` |  |
-| service.discovery.ports.l2Discovery.enabled | bool | `false` |  |
-| service.discovery.ports.l2Discovery.port | int | `1900` |  |
-| service.discovery.ports.l2Discovery.protocol | string | `"UDP"` |  |
-| service.discovery.type | string | `"ClusterIP"` |  |
-| service.guest.enabled | bool | `false` |  |
-| service.guest.ports.http.enabled | bool | `true` |  |
-| service.guest.ports.http.port | int | `8880` |  |
-| service.guest.ports.http.protocol | string | `"HTTP"` |  |
-| service.guest.ports.https.enabled | bool | `true` |  |
-| service.guest.ports.https.port | int | `8843` |  |
-| service.guest.ports.https.protocol | string | `"HTTPS"` |  |
-| service.guest.type | string | `"ClusterIP"` |  |
-| service.gui.enabled | bool | `true` |  |
-| service.gui.ports.https.enabled | bool | `true` |  |
-| service.gui.ports.https.port | int | `8443` |  |
-| service.gui.ports.https.primary | bool | `true` |  |
-| service.gui.ports.https.protocol | string | `"HTTPS"` |  |
-| service.gui.primary | bool | `true` |  |
-| service.gui.type | string | `"ClusterIP"` |  |
-| service.speedtest.enabled | bool | `false` |  |
-| service.speedtest.ports.speedtest.enabled | bool | `true` |  |
-| service.speedtest.ports.speedtest.port | int | `6789` |  |
-| service.speedtest.ports.speedtest.protocol | string | `"TCP"` |  |
-| service.speedtest.type | string | `"ClusterIP"` |  |
-| service.stun.enabled | bool | `true` |  |
-| service.stun.ports.stun.enabled | bool | `true` |  |
-| service.stun.ports.stun.port | int | `3478` |  |
-| service.stun.ports.stun.protocol | string | `"UDP"` |  |
-| service.stun.type | string | `"ClusterIP"` |  |
-| service.syslog.enabled | bool | `false` |  |
-| service.syslog.ports.syslog.enabled | bool | `true` |  |
-| service.syslog.ports.syslog.port | int | `5514` |  |
-| service.syslog.ports.syslog.protocol | string | `"UDP"` |  |
-| service.syslog.type | string | `"ClusterIP"` |  |
+| service.tcp.enabled | bool | `true` |  |
+| service.tcp.ports.controller | object | `{"enabled":true,"port":8080,"protocol":"TCP"}` | Configure Controller port used for device command/control |
+| service.tcp.ports.speedtest | object | `{"enabled":true,"port":6789,"protocol":"TCP"}` | Configure Speedtest port (used for UniFi mobile speed test) |
+| service.tcp.type | string | `"ClusterIP"` |  |
+| service.udp.enabled | bool | `true` |  |
+| service.udp.ports.discovery | object | `{"enabled":true,"port":10001,"protocol":"UDP"}` | Configure device discovery port |
+| service.udp.ports.l2Discovery | object | `{"enabled":false,"port":1900,"protocol":"UDP"}` | Configure device l2-discovery port |
+| service.udp.ports.stun | object | `{"enabled":true,"port":3478,"protocol":"UDP"}` | Configure STUN port |
+| service.udp.ports.syslog | object | `{"enabled":false,"port":5514,"protocol":"UDP"}` | Configure remote syslog port |
+| service.udp.type | string | `"ClusterIP"` |  |
+| service.web.enabled | bool | `true` |  |
+| service.web.ports.httpPortal | object | `{"enabled":true,"port":8880,"protocol":"HTTP"}` | Configure Captive Portal HTTP port |
+| service.web.ports.https | object | `{"enabled":true,"port":8443,"primary":true,"protocol":"HTTPS"}` | Configure Web interface + API port |
+| service.web.ports.httpsPortal | object | `{"enabled":true,"port":8843,"protocol":"HTTPS"}` | Configure Captive Portal HTTPS port |
+| service.web.primary | bool | `true` |  |
+| service.web.type | string | `"ClusterIP"` |  |
 
 ----------------------------------------------
 Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
