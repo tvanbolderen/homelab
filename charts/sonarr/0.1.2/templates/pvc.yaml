@@ -1,0 +1,45 @@
+{{- if and (.Values.persistence.config.enabled) (eq .Values.persistence.config.type "pvc") }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: sonarr-config-pvc
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ required (printf "accessMode is required for PVC") .Values.persistence.config.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ required (printf "size is required for PVC") .Values.persistence.config.size | quote }}
+{{- end }}
+{{- if and (.Values.persistence.tv.enabled) (eq .Values.persistence.tv.type "pvc") }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: sonarr-tv-pvc
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ required (printf "accessMode is required for PVC") .Values.persistence.tv.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ required (printf "size is required for PVC") .Values.persistence.tv.size | quote }}
+{{- end }}
+{{- if and (.Values.persistence.downloads.enabled) (eq .Values.persistence.downloads.type "pvc") }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: sonarr-downloads-pvc
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ required (printf "accessMode is required for PVC") .Values.persistence.downloads.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ required (printf "size is required for PVC") .Values.persistence.downloads.size | quote }}
+{{- end }}
