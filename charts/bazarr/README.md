@@ -1,6 +1,6 @@
 # bazarr
 
-![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
+![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
 
 Bazarr is a companion application to Sonarr and Radarr. It can manage and download subtitles based on your requirements.
 
@@ -52,7 +52,7 @@ Kubernetes: `>=1.16.0-0`
 | persistence.movies.type | string | `"pvc"` |  |
 | persistence.tv.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.tv.enabled | bool | `false` |  |
-| persistence.tv.mountPath | string | `"/tv"` |  |
+| persistence.tv.mountPath | string | `"/tvshows"` |  |
 | persistence.tv.size | string | `"100Gi"` |  |
 | persistence.tv.type | string | `"pvc"` |  |
 | probes.liveness.enabled | bool | `false` |  |
