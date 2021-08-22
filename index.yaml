@@ -3,6 +3,35 @@ entries:
   bazarr:
   - apiVersion: v2
     appVersion: auto
+    created: "2021-08-22T15:30:22.790653313Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Bazarr is a companion application to Sonarr and Radarr. It can manage
+      and download subtitles based on your requirements.
+    digest: effe58206993b0ebaa8c86e735a6c4afcbd1fac6a11513ea40538e508bad5da8
+    home: https://www.bazarr.media
+    icon: https://www.bazarr.media/assets/img/logo.png
+    keywords:
+    - bazarr
+    - radarr
+    - sonarr
+    - subtitles
+    - usenet
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    name: bazarr
+    sources:
+    - https://www.bazarr.media
+    - https://github.com/morpheus65535/bazarr
+    - https://hub.docker.com/r/linuxserver/bazarr
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/bazarr-0.1.2/bazarr-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: auto
     created: "2021-08-22T14:17:29.430847393Z"
     dependencies:
     - name: common
@@ -991,4 +1020,4 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/unifi-0.1.0/unifi-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-22T15:25:50.996971077Z"
+generated: "2021-08-22T15:30:22.790737213Z"
