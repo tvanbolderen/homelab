@@ -45,6 +45,10 @@ spec:
           volumeMounts:
             - name: bazarr-config
               mountPath: {{ .Values.persistence.config.mountPath }}
+            - name: bazarr-tv
+              mountPath: {{ .Values.persistence.tv.mountPath }}
+            - name: bazarr-movies
+              mountPath: {{ .Values.persistence.movies.mountPath }}
           {{- if .Values.probes.startup.enabled }}
           startupProbe:
             httpGet:
