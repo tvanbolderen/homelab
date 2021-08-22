@@ -476,6 +476,30 @@ entries:
   sonarr:
   - apiVersion: v2
     appVersion: auto
+    created: "2021-08-22T14:11:48.917704751Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Sonarr is a PVR for Usenet and BitTorrent users.
+    digest: 2c7233d51b74b4116dcab686deb13ad4d64a7e137a12812d9930e73b85a8e6c8
+    home: https://github.com/Sonarr/Sonarr
+    icon: https://github.com/Sonarr/Sonarr/blob/develop/Logo/400.png?raw=true
+    keywords:
+    - sonarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    name: sonarr
+    sources:
+    - https://github.com/Sonarr/Sonarr
+    - https://hub.docker.com/r/linuxserver/sonarr
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/sonarr-0.1.2/sonarr-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: auto
     created: "2021-08-08T13:12:06.526568055Z"
     dependencies:
     - name: common
@@ -890,4 +914,4 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/unifi-0.1.0/unifi-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-15T16:02:13.427607132Z"
+generated: "2021-08-22T14:11:48.921095951Z"
