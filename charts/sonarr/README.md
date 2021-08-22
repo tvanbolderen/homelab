@@ -1,6 +1,6 @@
 # sonarr
 
-![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
+![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
 
 Sonarr is a PVR for Usenet and BitTorrent users.
 
@@ -51,7 +51,7 @@ Kubernetes: `>=1.16.0-0`
 | persistence.downloads.type | string | `"pvc"` |  |
 | persistence.tv.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.tv.enabled | bool | `false` |  |
-| persistence.tv.mountPath | string | `"/tv"` |  |
+| persistence.tv.mountPath | string | `"/tvshows"` |  |
 | persistence.tv.size | string | `"100Gi"` |  |
 | persistence.tv.type | string | `"pvc"` |  |
 | probes.liveness.enabled | bool | `false` |  |
