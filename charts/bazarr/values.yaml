@@ -53,7 +53,7 @@ persistence:
 
   tv:
     enabled: false
-    mountPath: "/tv"
+    mountPath: "/tvshows"
     type: pvc
     size: "100Gi"
     accessMode: ReadWriteOnce
