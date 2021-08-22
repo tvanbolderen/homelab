@@ -390,7 +390,7 @@ questions:
                 description: "Path inside the container where the storage is mounted"
                 schema:
                   type: string
-                  default: "/tv"
+                  default: "/tvshows"
                   hidden: true
               - variable: type
                 label: "Type of Storage"
