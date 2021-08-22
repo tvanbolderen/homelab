@@ -1,0 +1,21 @@
+apiVersion: v2
+appVersion: auto
+dependencies:
+  - name: common
+    version: '0.3.0'
+    repository: https://tvanbolderen.github.io/homelab
+deprecated: false
+description: Radarr is a movie collection manager for Usenet and BitTorrent users.
+home: https://github.com/Radarr/Radarr
+icon: https://github.com/Radarr/Radarr/blob/develop/Logo/400.png?raw=true
+keywords:
+  - radarr
+  - torrent
+  - usenet
+kubeVersion: '>=1.16.0-0'
+name: radarr
+sources:
+  - https://github.com/Radarr/Radarr
+  - https://hub.docker.com/r/linuxserver/radarr
+type: application
+version: 0.1.3
