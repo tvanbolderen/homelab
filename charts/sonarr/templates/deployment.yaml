@@ -45,6 +45,10 @@ spec:
           volumeMounts:
             - name: sonarr-config
               mountPath: {{ .Values.persistence.config.mountPath }}
+            - name: sonarr-tv
+              mountPath: {{ .Values.persistence.tv.mountPath }}
+            - name: sonarr-downloads
+              mountPath: {{ .Values.persistence.downloads.mountPath }}
           {{- if .Values.probes.startup.enabled }}
           startupProbe:
             httpGet:
