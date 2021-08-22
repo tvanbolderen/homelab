@@ -45,6 +45,10 @@ spec:
           volumeMounts:
             - name: radarr-config
               mountPath: {{ .Values.persistence.config.mountPath }}
+            - name: radarr-movies
+              mountPath: {{ .Values.persistence.movies.mountPath }}
+            - name: radarr-downloads
+              mountPath: {{ .Values.persistence.downloads.mountPath }}
           {{- if .Values.probes.startup.enabled }}
           startupProbe:
             httpGet:
