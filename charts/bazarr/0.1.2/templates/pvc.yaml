@@ -1,0 +1,45 @@
+{{- if and (.Values.persistence.config.enabled) (eq .Values.persistence.config.type "pvc") }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: bazarr-config-pvc
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ required (printf "accessMode is required for PVC") .Values.persistence.config.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ required (printf "size is required for PVC") .Values.persistence.config.size | quote }}
+{{- end }}
+{{- if and (.Values.persistence.tv.enabled) (eq .Values.persistence.tv.type "pvc") }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: bazarr-tv-pvc
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ required (printf "accessMode is required for PVC") .Values.persistence.tv.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ required (printf "size is required for PVC") .Values.persistence.tv.size | quote }}
+{{- end }}
+{{- if and (.Values.persistence.movies.enabled) (eq .Values.persistence.movies.type "pvc") }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: bazarr-movies-pvc
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ required (printf "accessMode is required for PVC") .Values.persistence.movies.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ required (printf "size is required for PVC") .Values.persistence.movies.size | quote }}
+{{- end }}
