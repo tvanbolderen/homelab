@@ -1,0 +1,68 @@
+{{ if .Values.service.udp.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "common.names.fullname" . }}-udp
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.udp.type }}
+  selector:
+    {{- include "common.selectorLabels" . | nindent 4 }}
+  ports:
+  {{- with .Values.service.udp }}
+    {{- if .ports.stun.enabled }}
+    - name: stun
+      targetPort: stun
+      port: {{ .ports.stun.port }}
+      {{- if or (eq .ports.stun.protocol "HTTP") (eq .ports.stun.protocol "HTTPS") }}
+      protocol: TCP
+      {{- else }}
+      protocol: {{ .ports.stun.protocol | upper }}
+      {{- end }}
+      {{- if and (eq .type "NodePort") (not (empty .ports.stun.nodePort)) }}
+      nodePort: {{ .ports.stun.nodePort }}
+      {{- end }}
+    {{- end }}
+   {{- if .ports.discovery.enabled }}
+    - name: discovery
+      targetPort: discovery
+      port: {{ .ports.discovery.port }}
+      {{- if or (eq .ports.discovery.protocol "HTTP") (eq .ports.discovery.protocol "HTTPS") }}
+      protocol: TCP
+      {{- else }}
+      protocol: {{ .ports.discovery.protocol | upper }}
+      {{- end }}
+      {{- if and (eq .type "NodePort") (not (empty .ports.discovery.nodePort)) }}
+      nodePort: {{ .ports.discovery.nodePort }}
+      {{- end }}
+    {{- end }}
+    {{- if .ports.l2Discovery.enabled }}
+    - name: l2-discovery
+      targetPort: l2-discovery
+      port: {{ .ports.l2Discovery.port }}
+      {{- if or (eq .ports.l2Discovery.protocol "HTTP") (eq .ports.l2Discovery.protocol "HTTPS") }}
+      protocol: TCP
+      {{- else }}
+      protocol: {{ .ports.l2Discovery.protocol | upper }}
+      {{- end }}
+      {{- if and (eq .type "NodePort") (not (empty .ports.l2Discovery.nodePort)) }}
+      nodePort: {{ .ports.l2Discovery.nodePort }}
+      {{- end }}
+    {{- end }}
+    {{- if .ports.syslog.enabled }}
+    - name: syslog
+      targetPort: syslog
+      port: {{ .ports.syslog.port }}
+      {{- if or (eq .ports.syslog.protocol "HTTP") (eq .ports.syslog.protocol "HTTPS") }}
+      protocol: TCP
+      {{- else }}
+      protocol: {{ .ports.syslog.protocol | upper }}
+      {{- end }}
+      {{- if and (eq .type "NodePort") (not (empty .ports.syslog.nodePort)) }}
+      nodePort: {{ .ports.syslog.nodePort }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
