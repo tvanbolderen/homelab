@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: 6.2.26
+appVersion: auto
 dependencies:
   - name: common
     version: '0.3.0'
@@ -15,4 +15,4 @@ name: unifi
 sources:
   - https://hub.docker.com/r/linuxserver/unifi-controller
 type: application
-version: 0.2.1
+version: 0.2.2
