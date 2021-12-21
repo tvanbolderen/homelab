@@ -2,7 +2,7 @@
 image:
   repository: linuxserver/unifi-controller
   pullPolicy: IfNotPresent
-  tag: version-6.2.26
+  tag: latest
 
 controller:
   replicas: 1
