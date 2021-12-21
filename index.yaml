@@ -874,6 +874,27 @@ entries:
     version: 0.1.0
   unifi:
   - apiVersion: v2
+    appVersion: auto
+    created: "2021-12-21T14:58:30.482591107Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Unifi Controller
+    digest: 52a106b4c09295c5db3346b7b00c969d259f364d7c4f985cc29bf1c7cb218ec1
+    home: https://www.ui.com
+    icon: https://fleet.linuxserver.io/images/linuxserver_unifi-controller.png
+    keywords:
+    - unifi
+    kubeVersion: '>=1.16.0-0'
+    name: unifi
+    sources:
+    - https://hub.docker.com/r/linuxserver/unifi-controller
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/unifi-0.2.2/unifi-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v2
     appVersion: 6.2.26
     created: "2021-08-15T16:02:13.427525528Z"
     dependencies:
@@ -1020,4 +1041,4 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/unifi-0.1.0/unifi-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-22T15:30:22.790737213Z"
+generated: "2021-12-21T14:58:30.482774908Z"
