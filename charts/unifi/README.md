@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.2.26](https://img.shields.io/badge/AppVersion-6.2.26-informational?style=flat-square)
+![Version: 0.2.2](https://img.shields.io/badge/Version-0.2.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
 
 Unifi Controller
 
@@ -34,7 +34,7 @@ Kubernetes: `>=1.16.0-0`
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"linuxserver/unifi-controller"` |  |
-| image.tag | string | `"version-6.2.26"` |  |
+| image.tag | string | `"latest"` |  |
 | ingress.web.certResolver | string | `"letsencrypt"` |  |
 | ingress.web.enabled | bool | `false` |  |
 | ingress.web.entryPoint | string | `"websecure"` |  |
