@@ -1,0 +1,108 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "common.names.fullname" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.controller.replicas }}
+  strategy:
+    type: {{ .Values.controller.strategy }}
+    {{- if eq .Values.controller.strategy "RollingUpdate" }}
+    rollingUpdate:
+      maxSurge: {{ .Values.controller.rollingUpdate.surge }}
+      maxUnavailable: {{ .Values.controller.rollingUpdate.unavailable }}
+    {{- end }}
+  selector:
+    matchLabels:
+      {{- include "common.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "common.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: https
+              protocol: TCP
+              containerPort: 8443
+            - name: controller
+              protocol: TCP
+              containerPort: 8080
+            - name: stun
+              protocol: UDP
+              containerPort: 3478
+            - name: discovery
+              protocol: UDP
+              containerPort: 10001
+            - name: l2-discovery 
+              protocol: UDP
+              containerPort: 1900
+            - name: speedtest
+              protocol: TCP
+              containerPort: 6789
+            - name: syslog
+              protocol: UDP
+              containerPort: 5514
+            - name: http-portal
+              protocol: TCP
+              containerPort: 8880
+            - name: https-portal
+              protocol: TCP
+              containerPort: 8843
+          env:
+            {{- range $name, $value := .Values.env }}
+            - name: {{ quote $name }}
+              value: {{ quote $value }}
+            {{- end }}
+            {{- range $envList := .Values.envList }}
+            {{- if and $envList.name $envList.value }}
+            - name: {{ $envList.name }}
+              value: {{ $envList.value | quote }}
+            {{- else }}
+              {{- fail "Please specify name/value for environment variable" }}
+            {{- end }}
+            {{- end }}
+          volumeMounts:
+            - name: unifi-config
+              mountPath: {{ .Values.persistence.config.mountPath }}
+          {{- if .Values.probes.startup.enabled }}
+          startupProbe:
+            httpGet:
+              path: {{ .Values.probes.startup.path }}
+              port: https
+              scheme: HTTPS
+            initialDelaySeconds: 0
+            failureThreshold: 3
+            timeoutSeconds: 1
+            periodSeconds: 10
+          {{- end }}
+          {{- if .Values.probes.liveness.enabled }}
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.probes.liveness.path }}
+              port: https
+              scheme: HTTPS
+            initialDelaySeconds: 0
+            failureThreshold: 3
+            timeoutSeconds: 1
+            periodSeconds: 10
+          {{- end }}
+
+      volumes:
+        - name: unifi-config
+          {{- if .Values.persistence.config.enabled }}
+          {{- if eq .Values.persistence.config.type "pvc" }}
+          persistentVolumeClaim:
+            claimName: unifi-config-pvc
+          {{- else if eq .Values.persistence.config.type "hostPath" }}
+          hostPath:
+            path: {{ .Values.persistence.config.hostPath }}
+            type: {{ .Values.persistence.config.hostPathType }}
+          {{- else }}
+            {{- fail (printf "Not a valid persistence.type (%s)" .Values.persistence.config.type) }}
+          {{- end }}
+          {{- end }}
