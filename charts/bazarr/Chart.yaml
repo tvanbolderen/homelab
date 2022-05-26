@@ -22,4 +22,4 @@ sources:
   - https://github.com/morpheus65535/bazarr
   - https://hub.docker.com/r/linuxserver/bazarr
 type: application
-version: 0.1.2
+version: 0.1.3
