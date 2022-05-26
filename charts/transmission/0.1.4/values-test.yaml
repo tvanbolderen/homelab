@@ -1,0 +1,70 @@
+# Default values for Transmission
+image:
+  repository: haugene/transmission-openvpn
+  pullPolicy: IfNotPresent
+  tag: latest
+
+controller:
+  replicas: 1
+  strategy: Recreate
+
+service:
+  web:
+    enabled: true
+    primary: true
+    type: ClusterIP
+    ports:
+      http:
+        enabled: true
+        primary: true
+        port: 9091
+        protocol: HTTP
+
+ingress:
+  web:
+    enabled: false
+    match: "Host(`test.example.com`)"
+    entryPoint: websecure
+    certResolver: letsencrypt
+
+openvpn:
+  provider: PIA
+  username: user
+  password: pass
+
+envValueFrom:
+  WEBPASSWORD:
+    secretKeyRef:
+      name: transmission-credentials
+      key: openvpn-password
+
+env:
+  TZ: "Etc/UTC"
+  PUID: 568
+  PGID: 568
+  UMASK: 002
+  LOCAL_NETWORK: 10.0.0.0/8,172.16.0.0/12
+
+# - VPN Configuration documentation can be found [here](https://haugene.github.io/docker-transmission-openvpn/)
+# @default
+envList: []
+
+probes:
+  startup:
+    enabled: false
+    command: /etc/scripts/healthcheck.sh
+  liveness:
+    enabled: false
+    command: /etc/scripts/healthcheck.sh
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/data"
+    type: pvc
+    size: "1Gi"
+    accessMode: ReadWriteOnce
+
+nameOverride: ""
+
+fullnameOverride: ""

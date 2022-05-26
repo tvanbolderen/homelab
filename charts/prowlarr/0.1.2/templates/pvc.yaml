@@ -1,0 +1,15 @@
+{{- if and (.Values.persistence.config.enabled) (eq .Values.persistence.config.type "pvc") }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: prowlarr-config-pvc
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ required (printf "accessMode is required for PVC") .Values.persistence.config.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ required (printf "size is required for PVC") .Values.persistence.config.size | quote }}
+{{- end }}
