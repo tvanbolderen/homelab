@@ -1,0 +1,9 @@
+dependencies:
+- name: common
+  repository: https://tvanbolderen.github.io/homelab
+  version: 0.1.0
+- name: traefik
+  repository: https://helm.traefik.io/traefik
+  version: 10.20.0
+digest: sha256:ae7aed6d85c644554243278548d3fb77d674d75e91a2723d7484b176c82316cf
+generated: "2022-05-26T12:59:26.1051102+02:00"

@@ -1,0 +1,24 @@
+apiVersion: v2
+appVersion: '2.7.0'
+dependencies:
+  - name: common
+    repository: https://tvanbolderen.github.io/homelab
+    version: '0.1.0'
+  - name: traefik
+    version: '10.20.0'
+    repository: https://helm.traefik.io/traefik
+deprecated: false
+description: Traefik is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy.
+home: https://traefik.io
+icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
+keywords:
+  - traefik
+  - ingress
+kubeVersion: '>=1.16.0-0'
+name: traefik
+sources:
+  - https://traefik.io/
+  - https://github.com/traefik/traefik
+  - https://github.com/traefik/traefik-helm-chart
+type: application
+version: 0.2.0
