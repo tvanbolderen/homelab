@@ -16,4 +16,4 @@ sources:
   - https://github.com/linuxserver/Heimdall
   - https://hub.docker.com/r/linuxserver/heimdall
 type: application
-version: 0.1.2
+version: 0.1.3
