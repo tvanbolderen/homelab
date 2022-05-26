@@ -3,6 +3,35 @@ entries:
   bazarr:
   - apiVersion: v2
     appVersion: auto
+    created: "2022-05-26T12:22:44.394762526Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Bazarr is a companion application to Sonarr and Radarr. It can manage
+      and download subtitles based on your requirements.
+    digest: e9cfad5caea7f9d2a0bdd4dca902074dd391e83f3596c09680d021547d2ae915
+    home: https://www.bazarr.media
+    icon: https://www.bazarr.media/assets/img/logo.png
+    keywords:
+    - bazarr
+    - radarr
+    - sonarr
+    - subtitles
+    - usenet
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    name: bazarr
+    sources:
+    - https://www.bazarr.media
+    - https://github.com/morpheus65535/bazarr
+    - https://hub.docker.com/r/linuxserver/bazarr
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/bazarr-0.1.3/bazarr-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: auto
     created: "2021-08-22T15:30:22.790653313Z"
     dependencies:
     - name: common
@@ -91,6 +120,20 @@ entries:
   common:
   - apiVersion: v2
     appVersion: none
+    created: "2022-05-26T12:22:44.526111347Z"
+    description: Common library for Helm Charts
+    digest: a2f8553160ffba5efd82b39cf28d5243dea4b8a9657b6f9038d33e855f6a9f07
+    keywords:
+    - common
+    - library-chart
+    kubeVersion: '>=1.16.0-0'
+    name: common
+    type: library
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/common-0.3.1/common-0.3.1.tgz
+    version: 0.3.1
+  - apiVersion: v2
+    appVersion: none
     created: "2021-07-31T13:04:04.258318886Z"
     description: Common library for Helm Charts
     digest: 0f247b4f85f0233dd7ba5c63dada6e9337d345701c09153108baaee7b54a5e99
@@ -146,6 +189,28 @@ entries:
     - https://github.com/tvanbolderen/homelab/releases/download/common-0.1.0/common-0.1.0.tgz
     version: 0.1.0
   heimdall:
+  - apiVersion: v2
+    appVersion: auto
+    created: "2022-05-26T12:22:44.671034294Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Heimdall Application Dashboard is a dashboard for all your web applications.
+    digest: 81425b8dcc14e349567bfd46c907c5fef862d9ab2a7b9baec088f02107dc0f2b
+    home: https://heimdall.site
+    icon: https://i.imgur.com/mM4tcO5.png
+    keywords:
+    - heimdall
+    kubeVersion: '>=1.16.0-0'
+    name: heimdall
+    sources:
+    - https://github.com/linuxserver/Heimdall
+    - https://hub.docker.com/r/linuxserver/heimdall
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/heimdall-0.1.3/heimdall-0.1.3.tgz
+    version: 0.1.3
   - apiVersion: v2
     appVersion: auto
     created: "2021-08-08T13:02:13.756704839Z"
@@ -213,6 +278,30 @@ entries:
     - https://github.com/tvanbolderen/homelab/releases/download/heimdall-0.1.0/heimdall-0.1.0.tgz
     version: 0.1.0
   pihole:
+  - apiVersion: v2
+    appVersion: auto
+    created: "2022-05-26T12:22:44.812267007Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Pi-hole is a DNS sinkhole that protects your devices from unwanted
+      content.
+    digest: e9b3fe89bde987f40074d0aab9a7e0969beb5fb7098462b1815b8b036c19fabd
+    home: https://github.com/pi-hole/pi-hole
+    icon: https://i2.wp.com/pi-hole.net/wp-content/uploads/2016/12/Vortex-R.png
+    keywords:
+    - dns
+    kubeVersion: '>=1.16.0-0'
+    name: pihole
+    sources:
+    - https://pi-hole.net
+    - https://github.com/pi-hole/pi-hole
+    - https://hub.docker.com/r/pihole/pihole
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/pihole-0.2.5/pihole-0.2.5.tgz
+    version: 0.2.5
   - apiVersion: v2
     appVersion: auto
     created: "2021-08-08T13:04:47.549728857Z"
@@ -408,6 +497,32 @@ entries:
   prowlarr:
   - apiVersion: v2
     appVersion: auto
+    created: "2022-05-26T12:22:44.953397519Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Prowlarr is a indexer manager/proxy to integrate with your various
+      PVR apps.
+    digest: d9abcf036b266609231d67a8484836cf28d2b0851c4064ac6e6635d38e79416e
+    home: https://github.com/Prowlarr/Prowlarr
+    icon: https://github.com/Prowlarr/Prowlarr/blob/develop/Logo/400.png?raw=true
+    keywords:
+    - prowlarr
+    - indexer
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    name: prowlarr
+    sources:
+    - https://github.com/Prowlarr/Prowlarr
+    - https://hub.docker.com/r/linuxserver/prowlarr
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/prowlarr-0.1.2/prowlarr-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: auto
     created: "2021-08-08T12:07:53.009353058Z"
     dependencies:
     - name: common
@@ -459,6 +574,30 @@ entries:
     - https://github.com/tvanbolderen/homelab/releases/download/prowlarr-0.1.0/prowlarr-0.1.0.tgz
     version: 0.1.0
   radarr:
+  - apiVersion: v2
+    appVersion: auto
+    created: "2022-05-26T12:22:45.106938446Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Radarr is a movie collection manager for Usenet and BitTorrent users.
+    digest: 02515430a70e3f354820ffaa54df60649cd15c0097a5c80fa0a1d24961d58137
+    home: https://github.com/Radarr/Radarr
+    icon: https://github.com/Radarr/Radarr/blob/develop/Logo/400.png?raw=true
+    keywords:
+    - radarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    name: radarr
+    sources:
+    - https://github.com/Radarr/Radarr
+    - https://hub.docker.com/r/linuxserver/radarr
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/radarr-0.1.4/radarr-0.1.4.tgz
+    version: 0.1.4
   - apiVersion: v2
     appVersion: auto
     created: "2021-08-22T14:23:05.157470013Z"
@@ -558,6 +697,30 @@ entries:
   sonarr:
   - apiVersion: v2
     appVersion: auto
+    created: "2022-05-26T12:22:45.249115268Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Sonarr is a PVR for Usenet and BitTorrent users.
+    digest: 07530c66d1a8b5256364f85ec5905a84469e15e37b285fb4a506fcc1de07185d
+    home: https://github.com/Sonarr/Sonarr
+    icon: https://github.com/Sonarr/Sonarr/blob/develop/Logo/400.png?raw=true
+    keywords:
+    - sonarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    name: sonarr
+    sources:
+    - https://github.com/Sonarr/Sonarr
+    - https://hub.docker.com/r/linuxserver/sonarr
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/sonarr-0.1.4/sonarr-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: auto
     created: "2021-08-22T15:25:50.996829677Z"
     dependencies:
     - name: common
@@ -653,6 +816,34 @@ entries:
     - https://github.com/tvanbolderen/homelab/releases/download/sonarr-0.1.0/sonarr-0.1.0.tgz
     version: 0.1.0
   traefik:
+  - apiVersion: v2
+    appVersion: 2.4.9
+    created: "2022-05-26T12:22:45.397819351Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.1.0
+    - name: traefik
+      repository: https://helm.traefik.io/traefik
+      version: 10.1.1
+    description: Traefik is a modern HTTP reverse proxy and load balancer that makes
+      deploying microservices easy.
+    digest: 89a18f18bf4d8065256637746a1ee2726b49690f5a86117355b27d7afa65b641
+    home: https://traefik.io
+    icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
+    keywords:
+    - traefik
+    - ingress
+    kubeVersion: '>=1.16.0-0'
+    name: traefik
+    sources:
+    - https://traefik.io/
+    - https://github.com/traefik/traefik
+    - https://github.com/traefik/traefik-helm-chart
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/traefik-0.1.4/traefik-0.1.4.tgz
+    version: 0.1.4
   - apiVersion: v2
     appVersion: 2.4.9
     created: "2021-08-07T20:57:17.086318566Z"
@@ -768,6 +959,33 @@ entries:
   transmission:
   - apiVersion: v2
     appVersion: auto
+    created: "2022-05-26T12:22:45.559677555Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Transmission (with OpenVPN support) is a fast, easy, and free BitTorrent
+      client.
+    digest: 8875ba45ab5149d0c6c1560e48641587832af4f181c8f19004d23b80adaf16d0
+    home: https://haugene.github.io/docker-transmission-openvpn
+    icon: https://github.com/transmission/transmission-icons/blob/master/Transmission.png?raw=true
+    keywords:
+    - transmission
+    - openvpn
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    name: transmission
+    sources:
+    - https://github.com/transmission/transmission
+    - https://github.com/haugene/docker-transmission-openvpn
+    - https://hub.docker.com/r/haugene/transmission-openvpn
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/transmission-0.1.4/transmission-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: auto
     created: "2021-08-08T13:15:35.343973682Z"
     dependencies:
     - name: common
@@ -873,6 +1091,27 @@ entries:
     - https://github.com/tvanbolderen/homelab/releases/download/transmission-0.1.0/transmission-0.1.0.tgz
     version: 0.1.0
   unifi:
+  - apiVersion: v2
+    appVersion: auto
+    created: "2022-05-26T12:22:45.724945291Z"
+    dependencies:
+    - name: common
+      repository: https://tvanbolderen.github.io/homelab
+      version: 0.3.0
+    description: Unifi Controller
+    digest: e79195d508f8377f4436f63e9976cc0f26a1b1ac10bb408e9c0e8b230e62f2a6
+    home: https://www.ui.com
+    icon: https://fleet.linuxserver.io/images/linuxserver_unifi-controller.png
+    keywords:
+    - unifi
+    kubeVersion: '>=1.16.0-0'
+    name: unifi
+    sources:
+    - https://hub.docker.com/r/linuxserver/unifi-controller
+    type: application
+    urls:
+    - https://github.com/tvanbolderen/homelab/releases/download/unifi-0.2.4/unifi-0.2.4.tgz
+    version: 0.2.4
   - apiVersion: v2
     appVersion: auto
     created: "2021-12-22T16:46:57.789333716Z"
@@ -1062,4 +1301,4 @@ entries:
     urls:
     - https://github.com/tvanbolderen/homelab/releases/download/unifi-0.1.0/unifi-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-22T16:46:57.789439116Z"
+generated: "2022-05-26T12:22:45.725154093Z"
