@@ -6,7 +6,7 @@
 
 image:
   name: traefik
-  tag: '2.4.9'
+  tag: '2.7.0'
 
 ##
 # Most other defaults are set in questions.yaml

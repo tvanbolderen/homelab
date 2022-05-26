@@ -1,6 +1,6 @@
 # traefik
 
-![Version: 0.1.4](https://img.shields.io/badge/Version-0.1.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.4.9](https://img.shields.io/badge/AppVersion-2.4.9-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.7.0](https://img.shields.io/badge/AppVersion-2.7.0-informational?style=flat-square)
 
 Traefik is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy.
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://helm.traefik.io/traefik | traefik | 10.1.1 |
+| https://helm.traefik.io/traefik | traefik | 10.20.0 |
 | https://tvanbolderen.github.io/homelab | common | 0.1.0 |
 
 ## Values
