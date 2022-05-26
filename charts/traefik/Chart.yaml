@@ -1,11 +1,11 @@
 apiVersion: v2
-appVersion: '2.4.9'
+appVersion: '2.7.0'
 dependencies:
   - name: common
     repository: https://tvanbolderen.github.io/homelab
     version: '0.1.0'
   - name: traefik
-    version: '10.1.1'
+    version: '10.20.0'
     repository: https://helm.traefik.io/traefik
 deprecated: false
 description: Traefik is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy.
