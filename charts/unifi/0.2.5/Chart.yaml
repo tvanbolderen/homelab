@@ -1,0 +1,18 @@
+apiVersion: v2
+appVersion: auto
+dependencies:
+  - name: common
+    version: '0.3.0'
+    repository: https://tvanbolderen.github.io/homelab
+deprecated: false
+description: Unifi Controller
+home: https://www.ui.com
+icon: https://fleet.linuxserver.io/images/linuxserver_unifi-controller.png
+keywords:
+  - unifi
+kubeVersion: '>=1.16.0-0'
+name: unifi
+sources:
+  - https://hub.docker.com/r/linuxserver/unifi-controller
+type: application
+version: 0.2.5
