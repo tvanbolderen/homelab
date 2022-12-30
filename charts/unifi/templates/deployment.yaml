@@ -76,7 +76,7 @@ spec:
               port: https
               scheme: HTTPS
             initialDelaySeconds: 0
-            failureThreshold: 3
+            failureThreshold: 30
             timeoutSeconds: 1
             periodSeconds: 10
           {{- end }}
