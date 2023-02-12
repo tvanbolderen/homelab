@@ -70,10 +70,10 @@ envList: []
 
 probes:
   readiness:
-    enabled: true
+    enabled: false
     path: /admin.index.php
   liveness:
-    enabled: true
+    enabled: false
     path: /admin.index.php
 
 persistence:

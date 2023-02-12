@@ -71,13 +71,13 @@ questions:
               - variable: enabled
                 label: "Enable"
                 schema:
-                  hidden: true
+                  hidden: false
                   type: boolean
-                  default: true
+                  default: false
               - variable: path
                 label: "Path"
                 schema:
-                  hidden: true
+                  hidden: false
                   type: string
                   default: "/admin.index.php"
         - variable: liveness
@@ -88,13 +88,13 @@ questions:
               - variable: enabled
                 label: "Enable"
                 schema:
-                  hidden: true
+                  hidden: false
                   type: boolean
-                  default: true
+                  default: false
               - variable: path
                 label: "Path"
                 schema:
-                  hidden: true
+                  hidden: false
                   type: string
                   default: "/admin.index.php"
 
