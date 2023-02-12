@@ -1,6 +1,6 @@
 # pihole
 
-![Version: 0.2.5](https://img.shields.io/badge/Version-0.2.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
+![Version: 0.2.6](https://img.shields.io/badge/Version-0.2.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: auto](https://img.shields.io/badge/AppVersion-auto-informational?style=flat-square)
 
 Pi-hole is a DNS sinkhole that protects your devices from unwanted content.
 
@@ -51,9 +51,9 @@ Kubernetes: `>=1.16.0-0`
 | persistence.dnsmasq.mountPath | string | `"/etc/dnsmasq.d"` |  |
 | persistence.dnsmasq.size | string | `"1Gi"` |  |
 | persistence.dnsmasq.type | string | `"pvc"` |  |
-| probes.liveness.enabled | bool | `true` |  |
+| probes.liveness.enabled | bool | `false` |  |
 | probes.liveness.path | string | `"/admin.index.php"` |  |
-| probes.readiness.enabled | bool | `true` |  |
+| probes.readiness.enabled | bool | `false` |  |
 | probes.readiness.path | string | `"/admin.index.php"` |  |
 | service.dhcp.enabled | bool | `false` |  |
 | service.dhcp.ports.dhcp.enabled | bool | `true` |  |
