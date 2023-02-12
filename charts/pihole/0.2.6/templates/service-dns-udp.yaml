@@ -1,0 +1,29 @@
+{{ if .Values.service.dns.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "common.names.fullname" . }}-dns-udp
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.dns.type }}
+  selector:
+    {{- include "common.selectorLabels" . | nindent 4 }}
+  ports:
+  {{- with .Values.service.dns }}
+    {{- if .ports.udp.enabled }}
+    - name: dns-udp
+      targetPort: dns-udp
+      port: {{ .ports.udp.port }}
+      {{- if or (eq .ports.udp.protocol "HTTP") (eq .ports.udp.protocol "HTTPS") }}
+      protocol: TCP
+      {{- else }}
+      protocol: {{ .ports.udp.protocol | upper }}
+      {{- end }}
+      {{- if and (eq .type "NodePort") (not (empty .ports.udp.nodePort)) }}
+      nodePort: {{ .ports.udp.nodePort }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
