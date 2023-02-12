@@ -37,7 +37,7 @@ questions:
     label: "Configure Portal Button"
     schema:
       type: dict
-      hidden: false
+      hidden: true
       attrs:
         - variable: enabled
           label: "Enable"
@@ -61,7 +61,7 @@ questions:
     label: "Configure Probes"
     schema:
       type: dict
-      hidden: true
+      hidden: false
       attrs:
         - variable: readiness
           label: "Readiness probe"
